@@ -1,5 +1,5 @@
 # Minimal makefile for Sphinx documentation.
-# Required for local doc builds for proofreading purposes before the read-the-docs DocOps.
+# Required for local doc builds for proofreading purposes before processing by Read the Docs.
 
 # You can set these variables from the command line.
 SPHINXOPTS    =
