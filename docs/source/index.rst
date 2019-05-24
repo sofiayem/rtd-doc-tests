@@ -18,3 +18,8 @@ Insolar documentation
    features
    architecture
    terms
+
+.. _key:
+
+KEY
+---
