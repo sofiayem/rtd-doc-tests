@@ -20,8 +20,7 @@ Although this vision of a blockchain ecosystem might appear optimistic, Insolar 
 
 .. uml::
 
-   Alice -> Bob: [[../features.html#business-templates Business Templates]]
-   note left
-     Note
-   end note
-   Bob --> Alice: Response
+   package "Cloud n" [[../features.html#domain Domain]] {
+   [Domain 1]
+   [Domain 2]
+   }
