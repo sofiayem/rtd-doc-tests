@@ -20,7 +20,7 @@ Although this vision of a blockchain ecosystem might appear optimistic, Insolar 
 
 .. uml::
 
-   package "Cloud n" [[../features.html#domain Domain]] {
+   package "[[../features.html#domain Cloud n]]" {
    [Domain 1]
    [Domain 2]
    }
