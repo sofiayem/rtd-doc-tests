@@ -37,7 +37,7 @@ Components in the diagram are *clickable*, the links will lead you to respective
    
    together {
    package "Pulsar consensus" as pcon [[../architecture.html#pulsar-consensus]] {
-       collections Pulsars [[../architecture.html#pulsars]]
+     collections Pulsars [[../architecture.html#pulsars]]
    }
    package "Cloud n+1" as cloudnext [[../architecture.html#fed-of-clouds]] {
        card [Cloud's network consensus\n & messaging] as nextnet [[../architecture.html#network-consensus]]
