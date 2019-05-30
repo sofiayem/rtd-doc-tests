@@ -39,12 +39,12 @@ Components in the diagram are *clickable*, the links will lead you to respective
      package "[[../architecture.html#pulsar-consensus Pulsar consensus]]" as pcon {
        card [Pulsars] [[../architecture.html#pulsars]]
      }
-     package "Cloud n+1" as cloudnext [[../architecture.html#fed-of-clouds]] {
+     package "[[../architecture.html#fed-of-clouds Cloud n+1]]" as cloudnext {
        card [Cloud's network consensus\n & messaging] as nextnet [[../architecture.html#network-consensus]]
-       frame "Domain b" as domb [[../architecture.html#domains]] {
+       frame "[[../architecture.html#domains Domain b]]" as domb {
          rectangle "Contract b" as cntrctb [[../architecture.html#contracts]]
        }
-       frame "Domain a" as doma [[../architecture.html#domains ]] {
+       frame "[[../architecture.html#domains Domain a]]" as doma {
          rectangle "Contract a" as cntrcta [[../architecture.html#contracts]]
        }
        cntrctb -[hidden]d- nextnet
@@ -52,27 +52,27 @@ Components in the diagram are *clickable*, the links will lead you to respective
        [Pulsars] -u-> nextnet : pulses
      }
    }
-   package "Cloud n" as cloudn [[../architecture.html#fed-of-clouds]] {
-       frame "Domain n" as domn [[../architecture.html#domains]] {
+   package "[[../architecture.html#fed-of-clouds Cloud n]]" as cloudn {
+       frame "[[../architecture.html#domains Domain n]]" as domn {
          rectangle "Contract n+1" as cntrctnext [[../architecture.html#contracts]]
          rectangle "Contract n" as cntrctne [[../architecture.html#contracts]]
        }
-       rectangle "Network globulas" as globula [[../architecture.html#globulas]] {
-         node "Virtual nodes" as vn [[../architecture.html#virtual]] {
+       rectangle "[[../architecture.html#globulas Network globulas]]" as globula {
+         node "[[../architecture.html#virtual Virtual nodes]]" as vn {
              card vcard [
                - Generation handling
                - Transacting
                - CPU scaling
              ]
          }
-         node "Light material nodes" as ln [[../architecture.html#light-material]] {
+         node "[[../architecture.html#light-material Light material nodes]]" as ln {
              card lcard [
                - Short-term storage
                - Traffic scaling
                - Block Building
              ]
          }
-         node "Heavy material nodes" as hn [[../architecture.html#heavy-material]] {
+         node "[[../architecture.html#heavy-material Heavy material nodes]]" as hn {
              card hcard [
                - Long-term storage
                - Replication & recovery
@@ -82,8 +82,8 @@ Components in the diagram are *clickable*, the links will lead you to respective
       }
       together {
       card [Cloud's network consensus\n & messaging] as net [[../architecture.html#network-consensus]]
-      database "Ledger" as db [[../architecture.html#ledger]] {
-         frame "Storage, validation & consensus" [[../architecture.html#storage-consensus]] {
+      database "[[../architecture.html#ledger Ledger]]" as db {
+         frame "[[../architecture.html#storage-consensus Storage, validation & consensus]]" {
          rectangle ldgr [
            - Permissions
            ....
@@ -93,8 +93,8 @@ Components in the diagram are *clickable*, the links will lead you to respective
          ]
          }
       }
-      node "Processing" as process [[../architecture.html#execution-validation]] {
-         frame "Logic validation & consensus" [[../architecture.html#logic-consensus]] {
+      node "[[../architecture.html#execution-validation Processing]]" as process {
+         frame "[[../architecture.html#logic-consensus Logic validation & consensus]]" {
          rectangle proc [
            - Compilers
            ....
