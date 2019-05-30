@@ -33,11 +33,9 @@ Components in the diagram are *clickable*, the links will lead you to respective
 
 .. uml::
    
-   scale 750 width
-   
    together {
-     package "Pulsar consensus" [[../architecture.html#pulsar-consensus]] {
-       package "Pulsars" [[../architecture.html#pulsars]]
+     package "Pulsar consensus" as pcon [[../architecture.html#pulsar-consensus]] {
+       package "Pulsar" [[../architecture.html#pulsars]]
      }
      package "Cloud n+1" as cloudnext [[../architecture.html#fed-of-clouds]] {
        card [Cloud's network consensus\n & messaging] as nextnet [[../architecture.html#network-consensus]]
