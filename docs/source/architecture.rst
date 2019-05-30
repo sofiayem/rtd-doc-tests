@@ -34,6 +34,7 @@ Components in the diagram are *clickable*, the links will lead you to respective
 .. uml::
    
    scale 750 width
+
    together {
    package "Pulsar consensus" as pcon [[../architecture.html#pulsar-consensus]] {
       collections Pulsars [[../architecture.html#pulsars]]
