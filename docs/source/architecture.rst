@@ -582,6 +582,7 @@ A succession of object records (states) is called a :term:`lifeline <lifeline>`.
 
 .. uml::
 
+   scale 5/6
    package "[[../glossary.html#term-lifeline Lifeline]]" {
       object Request
       object Activate
@@ -614,6 +615,7 @@ Object's lifeline is not the only chain, though. The ledger stores any requests 
 
 .. uml::
 
+   scale 5/6
    package "[[../glossary.html#term-lifeline Lifeline]]" {
       object Request
       object Activate
