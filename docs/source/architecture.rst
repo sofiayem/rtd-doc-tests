@@ -36,43 +36,43 @@ Components in the diagram are *clickable*, the links will lead you to respective
    scale 750 width
    
    together {
-     package "[[../architecture.html#pulsar-consensus Pulsar consensus]]" as pcon {
-       card [Pulsars] [[../architecture.html#pulsars]]
+     package "Pulsar consensus" as pcon [[../architecture.html#pulsar-consensus]] {
+       collections Pulsars [[../architecture.html#pulsars]]
      }
-     package "[[../architecture.html#fed-of-clouds Cloud n+1]]" as cloudnext {
+     package "Cloud n+1" as cloudnext [[../architecture.html#fed-of-clouds]] {
        card [Cloud's network consensus\n & messaging] as nextnet [[../architecture.html#network-consensus]]
-       frame "[[../architecture.html#domains Domain b]]" as domb {
+       frame "Domain b" as domb [[../architecture.html#domains]] {
          rectangle "Contract b" as cntrctb [[../architecture.html#contracts]]
        }
-       frame "[[../architecture.html#domains Domain a]]" as doma {
+       frame "Domain a" as doma [[../architecture.html#domains ]] {
          rectangle "Contract a" as cntrcta [[../architecture.html#contracts]]
        }
        cntrctb -[hidden]d- nextnet
        cntrcta -[hidden]d- nextnet
-       [Pulsars] -u-> nextnet : pulses
+       Pulsars -u-> nextnet : pulses
      }
    }
-   package "[[../architecture.html#fed-of-clouds Cloud n]]" as cloudn {
-       frame "[[../architecture.html#domains Domain n]]" as domn {
+   package "Cloud n" as cloudn [[../architecture.html#fed-of-clouds]] {
+       frame "Domain n" as domn [[../architecture.html#domains]] {
          rectangle "Contract n+1" as cntrctnext [[../architecture.html#contracts]]
          rectangle "Contract n" as cntrctne [[../architecture.html#contracts]]
        }
-       rectangle "[[../architecture.html#globulas Network globulas]]" as globula {
-         node "[[../architecture.html#virtual Virtual nodes]]" as vn {
+       rectangle "Network globulas" as globula [[../architecture.html#globulas]] {
+         node "Virtual nodes" as vn [[../architecture.html#virtual]] {
              card vcard [
                - Generation handling
                - Transacting
                - CPU scaling
              ]
          }
-         node "[[../architecture.html#light-material Light material nodes]]" as ln {
+         node "Light material nodes" as ln [[../architecture.html#light-material]] {
              card lcard [
                - Short-term storage
                - Traffic scaling
                - Block Building
              ]
          }
-         node "[[../architecture.html#heavy-material Heavy material nodes]]" as hn {
+         node "Heavy material nodes" as hn [[../architecture.html#heavy-material]] {
              card hcard [
                - Long-term storage
                - Replication & recovery
@@ -82,8 +82,8 @@ Components in the diagram are *clickable*, the links will lead you to respective
       }
       together {
       card [Cloud's network consensus\n & messaging] as net [[../architecture.html#network-consensus]]
-      database "[[../architecture.html#ledger Ledger]]" as db {
-         frame "[[../architecture.html#storage-consensus Storage, validation & consensus]]" {
+      database "Ledger" as db [[../architecture.html#ledger]] {
+         frame "Storage, validation & consensus" [[../architecture.html#storage-consensus]] {
          rectangle ldgr [
            - Permissions
            ....
@@ -93,8 +93,8 @@ Components in the diagram are *clickable*, the links will lead you to respective
          ]
          }
       }
-      node "[[../architecture.html#execution-validation Processing]]" as process {
-         frame "[[../architecture.html#logic-consensus Logic validation & consensus]]" {
+      node "Processing" as process [[../architecture.html#execution-validation]] {
+         frame "Logic validation & consensus" [[../architecture.html#logic-consensus]] {
          rectangle proc [
            - Compilers
            ....
@@ -117,7 +117,7 @@ Components in the diagram are *clickable*, the links will lead you to respective
       db -[hidden]r- hn
       process -[hidden]d- net
       proc -[hidden]r- vn
-      [Pulsars] -r-> net: pulses
+      Pulsars -r-> net: pulses
       net <-> nextnet : messages
       domb -[hidden]- net
       domb -[hidden]r- domn
@@ -538,6 +538,16 @@ As described in the :ref:`static roles section <static_roles>`, material nodes a
 
 A typical :term:`object <object>` workflow is as follows:
 
+.. uml::
+
+   entity "Virtual Node" as v [[../architecture.html#virtual]]
+   entity "Material Node" as m [[../architecture.html#light-material]]
+
+   v -> m : Get Object
+   m -> v : [[../glossary.html#term-object Object]]
+   v -> v : Perform calculations
+   v -> m : Add modification [[../glossary.html#term-record record]] to the object
+
 .. _records:
 
 Records
@@ -582,8 +592,7 @@ A succession of object records (states) is called a :term:`lifeline <lifeline>`.
 
 .. uml::
 
-   scale 5/6
-   package "[[../glossary.html#term-lifeline Lifeline]]" {
+   package "[[../glossary.html#term-lifeline Lifeline]]" as Lifeline {
       object Request
       object Activate
       object "Amend 1" as Amend1
@@ -615,8 +624,7 @@ Object's lifeline is not the only chain, though. The ledger stores any requests 
 
 .. uml::
 
-   scale 5/6
-   package "[[../glossary.html#term-lifeline Lifeline]]" {
+   package "[[../glossary.html#term-lifeline Lifeline]]" as Lifeline {
       object Request
       object Activate
       object "Amend 1" as Amend1
@@ -702,6 +710,27 @@ Key figures in those relations are:
 * **Parent**. Object's "owner". Typically, when an operation on an object creates another object, the ledger considers the latter a child of the executed one.
 
 Relations between entities are as follows:
+
+.. uml::
+
+   object "Code 1" as Code1
+   object "Prototype 1 (Object)" as Proto1
+   object "Instance 1 (Object)" as Inst1
+
+   object "Code 2" as Code2
+   object "Prototype 2 (Object)" as Proto2
+   object "Instance 2 (Object)" as Inst2
+
+   object "Instance 3 (Object)" as Inst3
+
+   Code1 <|-- Proto1 : Image
+   Proto1 <|-- Inst1 : Image
+
+   Code2 <|-- Proto2 : Image
+   Proto2 <|-- Inst2 : Image
+
+   Inst2 <|-- Inst1 : Parent
+   Proto2 <|-- Inst3 : Image
 
 Since both prototype and object are technically :term:`objects <object>`, they contain a reference to either:
 
