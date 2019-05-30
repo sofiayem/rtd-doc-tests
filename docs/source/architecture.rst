@@ -36,21 +36,21 @@ Components in the diagram are *clickable*, the links will lead you to respective
    scale 750 width
    
    together {
-   package "Pulsar consensus" as pcon [[../architecture.html#pulsar-consensus]] {
-     collections Pulsars [[../architecture.html#pulsars]]
-   }
-   package "Cloud n+1" as cloudnext [[../architecture.html#fed-of-clouds]] {
-       card [Cloud's network consensus\n & messaging] as nextnet [[../architecture.html#network-consensus]]
-       frame "Domain b" as domb [[../architecture.html#domains]] {
-          rectangle "Contract b" as cntrctb [[../architecture.html#contracts]]
-       }
-       frame "Domain a" as doma [[../architecture.html#domains ]] {
-          rectangle "Contract a" as cntrcta [[../architecture.html#contracts]]
-       }
-       cntrctb -[hidden]d- nextnet
-       cntrcta -[hidden]d- nextnet
-       Pulsars -u-> nextnet : pulses
-   }
+     package "Pulsar consensus" as pcon [[../architecture.html#pulsar-consensus]] {
+       collections Pulsars [[../architecture.html#pulsars]]
+     }
+     package "Cloud n+1" as cloudnext [[../architecture.html#fed-of-clouds]] {
+         card [Cloud's network consensus\n & messaging] as nextnet [[../architecture.html#network-consensus]]
+         frame "Domain b" as domb [[../architecture.html#domains]] {
+            rectangle "Contract b" as cntrctb [[../architecture.html#contracts]]
+         }
+         frame "Domain a" as doma [[../architecture.html#domains ]] {
+            rectangle "Contract a" as cntrcta [[../architecture.html#contracts]]
+         }
+         cntrctb -[hidden]d- nextnet
+         cntrcta -[hidden]d- nextnet
+         Pulsars -u-> nextnet : pulses
+     }
    }
    package "Cloud n" as cloudn [[../architecture.html#fed-of-clouds]] {
        frame "Domain n" as domn [[../architecture.html#domains]] {
