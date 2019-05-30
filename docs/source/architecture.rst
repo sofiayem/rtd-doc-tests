@@ -580,7 +580,103 @@ Each record represents an object's state at a certain point. In the blockchain, 
 
 A succession of object records (states) is called a :term:`lifeline <lifeline>`. The index points to the object's latest state but the state does not matter since it is predetermined for each operation, i.e., two concurrent operations on the same object can work with different states of that object.
 
+.. uml::
+
+   package "Lifeline" [[../glossary.html#term-lifeline]] {
+      object Request
+      object Activate
+      object "Amend 1" as Amend1
+      object "Amend 2" as Amend2
+      object Deactivate
+   }
+   object Index
+
+   Amend2 <|-- Deactivate
+   Amend1 <|-- Amend2
+   Activate <|-- Amend1
+   Request <|-- Activate
+
+   Request : key = 1
+   Activate : key = 2
+   Amend1 : key = 3
+   Amend2 : key = 4
+   Deactivate : key = 5
+
+   Index : key = 1
+   Index : stateKey = 5
+
+   Lifeline -[hidden]r- Index
+
+   Index -l- Request
+   Index -l-> Deactivate
+
 Object's lifeline is not the only chain, though. The ledger stores any requests that belong to an object or :ref:`object's children <relations>` in a :term:`sideline <sideline>`. The general term for all the chains (lines) is a :term:`filament <filament>`. So, a more complex object structure is as follows:
+
+.. uml::
+
+   title [[../glossary.html#term-filament Object's Filaments]]
+
+   package "Lifeline" [[../glossary.html#term-lifeline]] {
+      object Request
+      object Activate
+      object "Amend 1" as Amend1
+      object "Amend 2" as Amend2
+      object Deactivate
+   }
+   object Index
+
+   Amend2 <|-- Deactivate
+   Amend1 <|-- Amend2
+   Activate <|-- Amend1
+   Request <|-- Activate
+
+   package "Child's sideline" as chsl [[../glossary.html#term-sideline]] {
+      object "Child 1" as Child1
+      object "Child 2" as Child2
+      object "Child 3" as Child3
+   }
+
+   Child1 <|-- Child2
+   Child2 <|-- Child3
+
+   package "Requests sideline" as rsl [[../glossary.html#term-sideline]] {
+      object "Request 1" as Req1
+      object "Request 2" as Req2
+      object "Result 1" as Res1
+      object "Request 3" as Req3
+   }
+
+   Req1 <|-- Req2
+   Req2 <|-- Res1
+   Res1 <|-- Req3
+
+   Request : key = 11
+   Activate : key = 12
+   Amend1 : key = 13
+   Amend2 : key = 14
+   Deactivate : key = 15
+
+   Child1 : key = 21
+   Child2 : key = 22
+   Child3 : key = 23
+
+   Req1 : key = 31
+   Req2 : key = 32
+   Res1 : key = 33
+   Req3 : key = 34
+
+   Index : key = 11
+   Index : stateKey = 15
+   Index : childKey = 23
+   Index : requestKey = 34
+
+   Index -- Request
+   Index --> Deactivate
+   Index --> Child3
+   Index --> Req3
+   Lifeline -[hidden]r- chsl
+   chsl -[hidden]r- rsl
+   rsl  -[hidden]r- Index
 
 .. _object_address:
 

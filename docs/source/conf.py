@@ -39,7 +39,7 @@ extensions = [
 ]
 
 plantuml_output_format = 'svg'
-plantuml_latex_output_format = 'png'
+plantuml_latex_output_format = 'svg'
 
 master_doc = 'index'
 
