@@ -582,7 +582,7 @@ A succession of object records (states) is called a :term:`lifeline <lifeline>`.
 
 .. uml::
 
-   package "Lifeline" [[../glossary.html#term-lifeline]] {
+   package "[[../glossary.html#term-lifeline Lifeline]]" {
       object Request
       object Activate
       object "Amend 1" as Amend1
@@ -614,9 +614,7 @@ Object's lifeline is not the only chain, though. The ledger stores any requests 
 
 .. uml::
 
-   title [[../glossary.html#term-filament Object's Filaments]]
-
-   package "Lifeline" [[../glossary.html#term-lifeline]] {
+   package "[[../glossary.html#term-lifeline Lifeline]]" {
       object Request
       object Activate
       object "Amend 1" as Amend1
@@ -630,7 +628,7 @@ Object's lifeline is not the only chain, though. The ledger stores any requests 
    Activate <|-- Amend1
    Request <|-- Activate
 
-   package "Child's sideline" as chsl [[../glossary.html#term-sideline]] {
+   package "[[../glossary.html#term-sideline Child's sideline]]" as chsl {
       object "Child 1" as Child1
       object "Child 2" as Child2
       object "Child 3" as Child3
@@ -639,7 +637,7 @@ Object's lifeline is not the only chain, though. The ledger stores any requests 
    Child1 <|-- Child2
    Child2 <|-- Child3
 
-   package "Requests sideline" as rsl [[../glossary.html#term-sideline]] {
+   package "[[../glossary.html#term-sideline Requests sideline]]" as rsl {
       object "Request 1" as Req1
       object "Request 2" as Req2
       object "Result 1" as Res1
