@@ -36,7 +36,7 @@ Components in the diagram are *clickable*, the links will lead you to respective
    scale 750 width
    
    together {
-     package "Pulsar consensus" as pcon [[../architecture.html#pulsar-consensus]] {
+     package "Pulsar consensus" [[../architecture.html#pulsar-consensus]] {
        package "Pulsars" [[../architecture.html#pulsars]]
      }
      package "Cloud n+1" as cloudnext [[../architecture.html#fed-of-clouds]] {
