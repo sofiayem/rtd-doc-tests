@@ -19,10 +19,10 @@
 
 project = 'Insolar'
 copyright = '2019, Insolar'
-author = 'Sofia Yemelianova'
+author = 'Sofia Yemelianova and collaborators'
 
 # The full version, including alpha/beta/rc tags
-release = '0.1'
+release = '1.0'
 version = 'latest'
 
 
@@ -34,7 +34,8 @@ version = 'latest'
 extensions = [
 	'sphinxcontrib.golangdomain',
 	'sphinx_tabs.tabs',
-	'sphinxcontrib.plantuml'
+	'sphinxcontrib.plantuml',
+	'sphinx_copybutton'
 ]
 
 plantuml_output_format = 'svg'

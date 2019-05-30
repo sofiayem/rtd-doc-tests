@@ -1,6 +1,6 @@
---------------------
+====================
 Distinctive Features
---------------------
+====================
 
 The Insolar platform is built to satisfy enterprise requirements by combining distributed and cloud technologies and dozens of industry-first features. Insolar is currently designing the proposed platform in an incremental fashion allowing it to progressively grow into the ultimate decentralized collaborative environment for various kinds of industries, companies, governments, and communities.
 Insolar sees these many features and capabilities as a mandatory part of blockchain implementation and integrates them as part of the Insolar platform.
@@ -17,6 +17,8 @@ Organizes and unifies software capabilities, hardware capacities, and the financ
 Globular Network
 ~~~~~~~~~~~~~~~~
 The backbone of a cloud. It is a set of protocols enabling the coordination of P2P networks of up to 1,000 nodes and a hierarchical network of up to 100,000 nodes (more details provided in Section 4.9).
+
+.. _omniscaling:
 
 OmniScaling
 ~~~~~~~~~~~
