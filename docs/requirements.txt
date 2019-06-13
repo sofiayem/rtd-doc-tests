@@ -1,5 +1,5 @@
 sphinx==2.0.1
-sphinxcontrib-golangdomain
+# sphinxcontrib-golangdomain
 sphinx-tabs
 sphinxcontrib-plantuml
 sphinx-copybutton
