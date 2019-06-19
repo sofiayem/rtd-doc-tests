@@ -2,4 +2,4 @@ sphinxcontrib-golangdomain
 sphinx-tabs
 sphinxcontrib-plantuml
 sphinx-copybutton
-plantuml==1.2018.1
+plantuml==0.1.1
