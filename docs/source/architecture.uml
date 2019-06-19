@@ -11,6 +11,9 @@ skinparam frame {
 skinparam node {
  backgroundColor transparent
 }
+skinparam control {
+ backgroundColor transparent
+}
 
 together {
 cloud "[[../architecture.html#pulsar-consensus Pulsar consensus]]" as pcon {
