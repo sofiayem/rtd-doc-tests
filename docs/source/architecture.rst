@@ -34,6 +34,7 @@ Components in the diagram are *clickable*, the links will lead you to respective
 .. uml::
 
    scale 750 width
+
    skinparam shadowing false
    skinparam backgroundColor transparent
    skinparam rectangle { 
@@ -42,6 +43,7 @@ Components in the diagram are *clickable*, the links will lead you to respective
    skinparam frame {
      backgroundColor transparent
    }
+   
    together {
     cloud "[[../architecture.html#pulsar-consensus Pulsar consensus]]" as pcon {
       together {
