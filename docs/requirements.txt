@@ -1,4 +1,4 @@
 sphinxcontrib-golangdomain
 sphinx-tabs
-sphinxcontrib-plantuml
+sphinxcontrib-plantuml>=0.15
 sphinx-copybutton
