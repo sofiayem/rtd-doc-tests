@@ -43,11 +43,11 @@ Components in the diagram are *clickable*, the links will lead you to respective
    skinparam frame {
      backgroundColor transparent
    }
-   
+
    together {
     cloud "[[../architecture.html#pulsar-consensus Pulsar consensus]]" as pcon {
       together {
-        collections Pulsars [[../architecture.html#pulsars]]
+        collections "[[../architecture.html#pulsars Pulsars]]" as pulsars
       }
     }
     cloud "[[../architecture.html#fed-of-clouds Cloud n+1]]" as cloudnext {
@@ -68,7 +68,7 @@ Components in the diagram are *clickable*, the links will lead you to respective
         cntrctb -[hidden]d- nextnet
         cntrcta -[hidden]d- nextnet
       }
-      [Pulsars] -u-> nextnet : pulses
+      pulsars -u-> nextnet : pulses
     }
    }
    cloud "[[../architecture.html#fed-of-clouds Cloud n]]" as cloudn {
@@ -144,7 +144,7 @@ Components in the diagram are *clickable*, the links will lead you to respective
      db -[hidden]r- hn
      process -[hidden]d- net
      proc -[hidden]r- vn
-     [Pulsars] -r-> net: pulses
+     pulsars -r-> net: pulses
      net <-> nextnet : messages
      domb -[hidden]- net
      domb -[hidden]r- domn
