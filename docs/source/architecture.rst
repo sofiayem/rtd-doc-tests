@@ -47,7 +47,7 @@ Components in the diagram are *clickable*, the links will lead you to respective
    together {
     cloud "[[../architecture.html#pulsar-consensus Pulsar consensus]]" as pcon {
       together {
-        collections "[[../architecture.html#pulsars Pulsars]]" as pulsars
+        component "[[../architecture.html#pulsars Pulsars]]" as pulsars
       }
     }
     cloud "[[../architecture.html#fed-of-clouds Cloud n+1]]" as cloudnext {
