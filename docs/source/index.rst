@@ -14,29 +14,6 @@ To connect to TestNet 1.1, go through :ref:`step-by-step instructions <connectin
 
 .. // TODO: Develop a documentation entry point (main page) upon the content's readiness.
 
-Code-example extension:
-
-.. example-code::
-
-   .. code-block:: python
-
-      import my-api
-
-   .. code-block:: ruby
-
-      require 'my-api'
-
-Copy-paste:
-
-.. example-code::
-    .. code-block:: python
-
-        import my-api
-
-    .. code-block:: ruby
-
-        require 'my-api'
-
 Tabs extension:
 
 .. tabs::
@@ -58,6 +35,23 @@ Tabs extension:
       .. code-block:: go
 
          import {'smth'}
+
+.. content-tabs::
+
+    .. tab-container:: tab1
+        :title: Tab title one
+
+        Content for tab one
+
+    .. tab-container:: tab2
+        :title: Tab title two
+
+        Content for tab two
+
+.. toggle-header::
+    :header: Example 1 **Show/Hide Code**
+
+        Content for header
 
 .. toctree::
    :maxdepth: 2
