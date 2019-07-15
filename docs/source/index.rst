@@ -32,7 +32,7 @@ Tabs extension:
 
    .. tab:: Golang
 
-      .. code-block:: go
+      .. code-block:: guess
 
          import {'smth'}
 
@@ -41,17 +41,28 @@ Tabs extension:
     .. tab-container:: tab1
         :title: Tab title one
 
-        Content for tab one
+         .. code-block:: guess
+
+            import {'smth'}
 
     .. tab-container:: tab2
         :title: Tab title two
 
-        Content for tab two
+         .. code-block:: guess
+
+            import {'smth'}
 
 .. toggle-header::
     :header: Example 1 **Show/Hide Code**
 
-        Content for header
+    .. code-block::
+
+      // Convert the public key into PEM format:
+      x509PublicKey, err := x509.MarshalPKIXPublicKey(&publicKey)
+      if err != nil {
+         log.Fatalln(err)
+      }
+      pemPublicKey := pem.EncodeToMemory(&pem.Block{Type: "PUBLIC KEY", Bytes: x509PublicKey})
 
 .. toctree::
    :maxdepth: 2
