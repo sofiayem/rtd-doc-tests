@@ -55,7 +55,7 @@ Tabs extension:
 
    .. tab:: Golang
 
-      .. code-block:: go
+      .. code-block:: golang
 
          import {'smth'}
 
