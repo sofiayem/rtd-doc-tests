@@ -26,6 +26,17 @@ Code-example extension:
 
       require 'my-api'
 
+Copy-paste:
+
+.. example-code::
+    .. code-block:: python
+
+        import my-api
+
+    .. code-block:: ruby
+
+        require 'my-api'
+
 Tabs extension:
 
 .. tabs::
