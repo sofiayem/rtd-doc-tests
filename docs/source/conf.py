@@ -36,7 +36,7 @@ extensions = [
 	'sphinx_tabs.tabs',
 	'sphinxcontrib.plantuml',
 	'sphinx_copybutton',
-    'sphinxcontrib.examplecode'
+    'sphinxcontrib.osexample'
 ]
 
 plantuml_output_format = 'svg'
