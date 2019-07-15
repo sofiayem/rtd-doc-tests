@@ -55,7 +55,7 @@ Tabs extension:
 .. toggle-header::
     :header: Example 1 **Show/Hide Code**
 
-    .. code-block:: go
+    .. code-block::
 
       // Convert the public key into PEM format:
       x509PublicKey, err := x509.MarshalPKIXPublicKey(&publicKey)
