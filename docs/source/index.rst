@@ -17,13 +17,13 @@ To connect to TestNet 1.1, go through :ref:`step-by-step instructions <connectin
 Code-example extension:
 
 .. example-code::
-    .. code-block:: python
+   .. code-block:: python
 
-        import my-api
+      import my-api
 
-    .. code-block:: ruby
+   .. code-block:: ruby
 
-        require 'my-api'
+      require 'my-api'
 
 Tabs extension:
 
