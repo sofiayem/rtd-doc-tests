@@ -14,6 +14,33 @@ To connect to TestNet 1.1, go through :ref:`step-by-step instructions <connectin
 
 .. // TODO: Develop a documentation entry point (main page) upon the content's readiness.
 
+Code-example extension:
+
+.. example-code::
+    .. code-block:: python
+
+        import my-api
+
+    .. code-block:: ruby
+
+        require 'my-api'
+
+Tabs extension:
+
+.. tabs::
+
+   .. tab:: Apples
+
+      Apples are green, or sometimes red.
+
+   .. tab:: Pears
+
+      Pears are green.
+
+   .. tab:: Oranges
+
+      Oranges are orange.
+
 .. toctree::
    :maxdepth: 2
    :caption: Overview
