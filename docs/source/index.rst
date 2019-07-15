@@ -53,16 +53,33 @@ Tabs extension:
             import {'smth'}
 
 .. toggle-header::
-    :header: Example 1 **Show/Hide Code**
+   :header: Example 1 **Show/Hide Code**
 
-    .. code-block::
+   .. code-block:: go
 
-      // Convert the public key into PEM format:
-      x509PublicKey, err := x509.MarshalPKIXPublicKey(&publicKey)
-      if err != nil {
-         log.Fatalln(err)
+      // Create a function to get a new seed for each signed request:
+      func getNewSeed() string {
+        // Form a request body for getSeed:
+        getSeedReq := platformRequest{
+          JSONRPC: JSONRPCVersion,
+          Method:  "node.getSeed",
+          ID:      id,
+        }
+        // Increment the id for future requests:
+        id++
+
+        // Send the request:
+        seedBody := sendInfoRequest(getSeedReq)
+
+        // Unmarshal the response:
+        var seed seedResponse
+        err := json.Unmarshal(seedBody, &seed)
+        if err != nil {
+          log.Fatalln(err)
+        }
+        // Put the current seed into a variable:
+        return seed.Result.Seed
       }
-      pemPublicKey := pem.EncodeToMemory(&pem.Block{Type: "PUBLIC KEY", Bytes: x509PublicKey})
 
 .. toctree::
    :maxdepth: 2
