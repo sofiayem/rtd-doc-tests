@@ -17,6 +17,7 @@ To connect to TestNet 1.1, go through :ref:`step-by-step instructions <connectin
 Code-example extension:
 
 .. example-code::
+
    .. code-block:: python
 
       import my-api
