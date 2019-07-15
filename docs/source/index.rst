@@ -30,17 +30,23 @@ Tabs extension:
 
 .. tabs::
 
-   .. tab:: Apples
+   .. tab:: Python
 
-      Apples are green, or sometimes red.
+      .. code-block:: python
 
-   .. tab:: Pears
+         import my-api
 
-      Pears are green.
+   .. tab:: Ruby
 
-   .. tab:: Oranges
+      .. code-block:: ruby
 
-      Oranges are orange.
+         require 'my-api'
+
+   .. tab:: Golang
+
+         .. code-block:: go
+
+         import {'smth'}
 
 .. toctree::
    :maxdepth: 2
