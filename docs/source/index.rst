@@ -38,19 +38,22 @@ Tabs extension:
 
 .. content-tabs::
 
-    .. tab-container:: tab1
-        :title: Tab title one
+   .. tab-container:: tab1
+      :title: Golang
+
+      .. code-block:: guess
+
+         import {'smth'}
+
+   .. tab-container:: tab2
+      :title: Java
+
+      .. toggle-header::
+         :header: Java code **Show/Hide**
 
          .. code-block:: guess
 
-            import {'smth'}
-
-    .. tab-container:: tab2
-        :title: Tab title two
-
-         .. code-block:: guess
-
-            import {'smth'}
+            import {'smth else'}
 
 .. toggle-header::
    :header: Example 1 **Show/Hide Code**

@@ -4,4 +4,3 @@ sphinx-tabs
 sphinxcontrib-plantuml
 sphinx-copybutton
 sphinxcontrib-contentui
-pygments>=1.2
