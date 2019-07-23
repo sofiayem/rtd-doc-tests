@@ -12,6 +12,8 @@ To get a grip on how Insolar works, take a look at its :ref:`architecture overvi
 
 To connect to TestNet 1.1, go through :ref:`step-by-step instructions <connecting_to_testnet>`.
 
+To learn how to form and send signed requests to Insolar's API, go through :ref:`tutorial <building_requester>`.
+
 .. // TODO: Develop a documentation entry point (main page) upon the content's readiness.
 
 .. toctree::
@@ -30,3 +32,9 @@ To connect to TestNet 1.1, go through :ref:`step-by-step instructions <connectin
    :caption: Integration
 
    integration
+
+.. toctree::
+   :maxdepth: 2
+   :caption: API cookbook
+
+   requester
