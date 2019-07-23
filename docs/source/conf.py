@@ -35,8 +35,7 @@ extensions = [
 #	'sphinxcontrib.golangdomain',
 	'sphinx_tabs.tabs',
 	'sphinxcontrib.plantuml',
-	'sphinx_copybutton',
-    'sphinxcontrib.contentui'
+	'sphinx_copybutton'
 ]
 
 plantuml_output_format = 'svg'
