@@ -179,7 +179,7 @@ To build the requester, install and set up the following:
 
    |
 
-#. With the Golang or Java programming tools, you do not need to “reinvent the wheel”: create a ``main.go`` or ``main.java`` file and, inside, import the packages your requester will use. For example:
+#. With the Golang or Java programming tools, you do not need to “reinvent the wheel”: create a ``Main.go`` or ``Main.java`` file and, inside, import the packages your requester will use. For example:
 
    .. content-tabs::
 
@@ -800,7 +800,7 @@ For example:
              return new JSONObject(response);
          }
 
-Now, every ``sendSignedRequest(payload, privateKey)`` call will return the result of the contract call.
+Now, every ``sendSignedRequest(payload, privateKey)`` call will return the result of the contract method.
 
 With the seed getter and sender functions, you can get the seed and send signed contract requests. The next step is to generate a key pair.
 
