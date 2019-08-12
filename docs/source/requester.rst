@@ -75,6 +75,8 @@ To build the requester, go through the following steps:
 
 #. **Form a transfer request** and, again, call the sender function.
 
+#. **Test** the requester against a local Insolar deployment.
+
 All the above steps are detailed in sections below.
 
 .. _prepare:
@@ -999,7 +1001,7 @@ Now that you have your member's reference, you can transfer funds to other membe
 
 .. _form_transfer:
 
-Step 6: Form and Send a Transfer Request
+Step 7: Form and Send a Transfer Request
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The transfer request is a signed request to a contract's method that transfers some amount of funds to another member.
@@ -1110,7 +1112,7 @@ With that, the requester, as a member, can send funds to other members of the In
 
 .. _test_requester:
 
-Step 7: Test the Requester
+Step 8: Test the Requester
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To test the requester, do the following:
