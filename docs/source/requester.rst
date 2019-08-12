@@ -15,7 +15,7 @@ To start building the requester, first, familiarize yourself with definitions In
 What You Will Build
 -------------------
 
-You will build a program (requester) that creates a member in the Insolar network and, as a member, transfers funds to and from its account.
+You will build a program (requester) that creates a member in the Insolar network and, as a member, transfers funds from its account.
 
 The requester forms and sends the following requests to the Insolar’s JSON RPC 2.0 API endpoint and receives the corresponding responses:
 
