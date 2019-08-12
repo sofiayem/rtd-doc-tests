@@ -645,7 +645,7 @@ For example:
    .. tab-container:: Golang
       :title: Golang: Main.go
 
-      .. tip:: In Golang, the ECDSA signature consists of two big integers. To convert a signature into the ASN.1 DER format, put into the ``ecdsaSignature`` structure defined in :ref:`one of the preparation steps <golang_sig>`.
+      .. tip:: In Golang, the ECDSA signature consists of two big integers. To convert the signature into the ASN.1 DER format, put it into the ``ecdsaSignature`` structure defined in :ref:`one of the preparation steps <golang_sig>`.
 
       .. code-block:: Go
          :linenos:
