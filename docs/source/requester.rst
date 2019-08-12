@@ -802,7 +802,7 @@ For example:
              return new JSONObject(response);
          }
 
-Now, every ``sendSignedRequest(payload, privateKey)`` call will return the result of the contract method.
+Now, every ``sendSignedRequest(payload, privateKey)`` call will return the result of a contract method.
 
 With the seed getter and sender functions, you can get the seed and send signed contract requests. The next step is to generate a key pair.
 
