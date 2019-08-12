@@ -6,9 +6,9 @@ Tutorial: Building an API Requester
 
 .. TODO: Put the relevant links to API specification everywhere necessary.
 
-This tutorial walks you through the process of creating a requester to Insolar’s API in which you will learn how to **form and sign requests** that create a member capable of transferring funds to other members.
+This tutorial walks you through the process of creating a requester to Insolar’s API. You will learn how to **form and sign requests** that create a member capable of transferring funds to other members.
 
-To start building the requester, first, familiarize yourself with definitions Insolar uses and the platform's API request types.
+To start building the requester, first, familiarize yourself with definitions Insolar uses and the Platform's API request types (information and contract).
 
 .. _what_you_will_build:
 
@@ -65,9 +65,9 @@ To build the requester, go through the following steps:
 
 #. **Declare** request **structures** (Golang) or **classes** (Java) in accordance with the Insolar’s API specification.
 
-#. **Create a seed getter** function. This getter will be reused to put a unique seed into every signed request.
+#. **Create a seed getter** function. The getter will be reused to put a new seed into every signed request.
 
-#. **Create a sender** function that signs and sends requests given the private key.
+#. **Create a sender** function that signs and sends requests given a private key.
 
 #. **Generate a key pair**, export the private key into a file, and store it in some secure place.
 
@@ -179,7 +179,7 @@ To build the requester, install and set up the following:
 
    |
 
-#. With the Golang or Java programming tools, you do not need to “reinvent the wheel”: create a ``main.go`` or ``main.java`` file and, inside, import the necessary packages listed below.
+#. With the Golang or Java programming tools, you do not need to “reinvent the wheel”: create a ``main.go`` or ``main.java`` file and, inside, import the packages your requester will use. For example:
 
    .. content-tabs::
 
@@ -253,8 +253,8 @@ To build the requester, install and set up the following:
 
       .. _golang_sig:
 
-      * (Golang) Since an ECDSA signature in Go consists of two big integers, declare a single structure to contain it.
-      * (Java) Since the program has to contain a main class, declare it to wrap up all the required functionality.
+      * (**Golang**) Insolar supports ECDSA-signed requests. Since an ECDSA signature in Golang consists of two big integers, declare a single structure to contain it.
+      * (**Java**) Since the program has to contain a main class, declare it to wrap all the required functionality.
 
       .. _set_url:
    #. Set the endpoint URL for local deployment. It can be changed to a production one after testing.
@@ -298,7 +298,7 @@ To build the requester, install and set up the following:
          .. code-block:: Java
             :linenos:
 
-            // Declare a main class to wrap up all the required functionality:
+            // Declare a main class to wrap all the required functionality:
             public class Main {
 
                 // Set the endpoint URL for local deployment (is to be changed to a production URL):
@@ -313,7 +313,7 @@ To build the requester, install and set up the following:
 
                 // The Main class is to be continued...
 
-With that, everything your requester will need is set up.
+With that, everything your requester needs is set up.
 
 .. _declare_structs_or_classes:
 
@@ -322,13 +322,13 @@ Step 2: Declare Request Structures or Classes
 
 Next, declare request structures (Golang) or classes (Java) in accordance with the Insolar’s API specification.
 
-To transfer funds, you need structures (classes) for:
+To transfer funds, you need structures or classes for:
 
-#. ``node.getSeed`` information request.
-#. ``member.create`` and ``member.transfer`` contract requests.
+#. Information request: ``node.getSeed``.
+#. Contract requests: ``member.create`` and ``member.transfer``.
 
 Both information and contract requests have the same base structure in accordance with the `JSON RPC 2.0 specification <https://www.jsonrpc.org/specification>`_.
-Therefore, it makes sense to define it once and expand for all requests with their specific fields.
+Therefore, define the base structure once and expand it for all requests with their specific fields.
 
 For example:
 
@@ -437,7 +437,7 @@ For example:
                private String seed;
                @SerializedName("callSite")
                private String callSite;
-               // CallParams is a structure that depends on a particular method.
+               // callParams is a structure that depends on a particular method.
                @SerializedName("callParams")
                private Object callParams;
                @SerializedName("reference")
@@ -481,8 +481,8 @@ For example:
 
 Now that the requester knows which information and contract requests it is supposed to send, create the following functions:
 
-* Seed getter for the information request.
-* Sender for contract requests.
+#. Seed getter for the information request.
+#. Sender for contract requests.
 
 .. _create_seed_getter:
 
@@ -497,14 +497,14 @@ Each signed request to Insolar's API has to contain a seed in its body. Seed is 
 
    .. tip:: Due to these qualities, a new seed is required to form each signed contract request.
 
-Therefore, to be able to send signed requests, create a seed getter function to re-use upon forming each such request.
+To be able to send signed requests, create a seed getter function to re-use upon forming each such request.
 
 The seed getter:
 
 #. Forms a ``node.getSeed`` request body in JSON format.
 #. Creates an *unsigned* HTTP request with the body and a Content-Type (``application/json``) HTTP header.
 #. Sends the request and receives a response.
-#. Retrieves the acquired seed from the response and return it.
+#. Retrieves the acquired seed from the response and returns it.
 
 For example:
 
@@ -547,7 +547,7 @@ For example:
              }
              defer seedReq.Body.Close()
 
-             // Receive and return the response body:
+             // Receive the response body:
              seedRespBody, err := ioutil.ReadAll(seedResponse.Body)
              if err != nil {
                  log.Fatalln(err)
@@ -630,9 +630,6 @@ The sender function:
 #. Forms an HTTP request with the payload and relevant HTTP headers:
 
    #. *Content-Type* — ``application/json``.
-
-      .. note:: All the necessary conventions are designated with an (n) below.
-
    #. *Digest* that contains (1) a SHA-256 hash of the payload's bytes (2) represented as a Base64 string.
    #. *Signature* that contains (1) the ECDSA signature of the hash's bytes (2) in the ASN.1 DER format (3) represented as a Base64 string.
 
@@ -830,7 +827,7 @@ For example:
    .. tab-container:: Golang
       :title: Golang: Main.go
 
-      .. tip:: In Golang, to encode the key into a PEM format, first, convert it into ASN.1 DER using the ``x509`` library.
+      .. tip:: In Golang, to encode the key into the PEM format, first, convert it into ASN.1 DER using the ``x509`` library.
 
       .. code-block:: Go
          :linenos:
@@ -928,7 +925,7 @@ To create a member:
 
 #. Call the ``getNewSeed()`` function and store the new seed into a variable.
 #. Form the ``member.create`` request's payload with the seed and the public key generated in the :ref:`previous step <generate_key_pair>`.
-#. Call the ``sendSignedRequest()`` function and give it the payload and the paired private key.
+#. Call the ``sendSignedRequest()`` function and pass it the payload and the paired private key.
 #. Put the returned member reference into a variable. The subsequent transfer request requires it.
 
 For example:
@@ -1009,17 +1006,17 @@ The transfer request is a signed request to a contract's method that transfers s
 
 To transfer funds:
 
-#. Acquire a reference to a member to whom you want to send the funds.
+#. Acquire the recipient's reference — the reference to a member to whom you want to transfer the funds.
 #. Call the ``getNewSeed()`` function and store the new seed into a variable.
 #. Form a ``member.transfer`` request's payload with:
 
    * the new seed,
    * an amount of funds,
    * the recipient's reference,
-   * your reference,
-   * and your public key.
+   * your reference (for identification),
+   * and your public key (to check the signature).
 
-#. Call the ``sendSignedRequest()`` function and give it the payload and the paired private key.
+#. Call the ``sendSignedRequest()`` function and pass it the payload and the paired private key.
 
 The transfer request will return the factual fee value in its response.
 
@@ -1109,7 +1106,7 @@ For example:
          // And remember to close the Main class.
          }
 
-With that, the requester can send funds to other members of the Insolar network.
+With that, the requester, as a member, can send funds to other members of the Insolar network.
 
 .. _test_requester:
 
@@ -1134,9 +1131,9 @@ To test the requester, do the following:
    .. tab-container:: Java
       :title: Java: Main.java
 
-      .. tip:: Make sure to create the ``pom.xml`` :ref:`file for Maven <maven_file>`.
+      .. tip:: Make sure to create the ``pom.xml`` file for Maven as described in :ref:`one of the preparation steps <maven_file>`.
 
-      .. code-block:: Java
+      .. code-block:: console
 
          $ mvn install
          $ java -jar ./target/insolar-java-example-1.0-SNAPSHOT-jar-with-dependencies.jar
@@ -1158,10 +1155,12 @@ Build upon it:
 Complete Requester Code Examples
 --------------------------------
 
-.. attention:: To send transfer requests, put the reference to the recipient's member into the ``ToMemberReference`` field value in the highlighted line.
+Below are the complete requester code examples in both Golang and Java. Click the links to show or hide them.
+
+.. attention:: To be able to send transfer requests, put the reference to the recipient's member into the ``ToMemberReference`` field value in the highlighted line.
 
 .. toggle-header::
-   :header: Golang: ``Main.go`` file **Show/Hide**
+   :header: Golang: ``Main.go`` file. **Show/Hide**
 
    .. code-block:: Go
       :linenos:
@@ -1278,7 +1277,7 @@ Complete Requester Code Examples
         }
         defer seedReq.Body.Close()
 
-        // Receive and return the response body:
+        // Receive the response body:
         seedRespBody, err := ioutil.ReadAll(seedResponse.Body)
         if err != nil {
           log.Fatalln(err)
@@ -1464,7 +1463,7 @@ Complete Requester Code Examples
 |
 
 .. toggle-header::
-   :header: Java: ``Main.java`` file **Show/Hide**
+   :header: Java: ``Main.java`` file. **Show/Hide**
 
    .. code-block:: Java
       :linenos:
@@ -1494,7 +1493,7 @@ Complete Requester Code Examples
       import com.google.gson.annotations.SerializedName;
       import org.json.JSONObject;
 
-      // Declare a main class to wrap up all the required functionality:
+      // Declare a main class to wrap all the required functionality:
       public class Main {
 
           // Set the endpoint URL for local deployment (is to be changed to a production URL):
@@ -1559,7 +1558,7 @@ Complete Requester Code Examples
                   private String seed;
                   @SerializedName("callSite")
                   private String callSite;
-                  // CallParams is a structure that depends on a particular method.
+                  // callParams is a structure that depends on a particular method.
                   @SerializedName("callParams")
                   private Object callParams;
                   @SerializedName("reference")
