@@ -4,37 +4,31 @@
 Insolar Documentation
 =====================
 
-.. note::
+Welcome to Insolar's documentation.
 
-   Insolar's documentation is under development, its structure is not yet finalized. Expect updates soon.
+Insolar platform is the most secure, scalable, and comprehensive business-ready blockchain toolkit in the world. Insolar’s goal is to give businesses access to features and services that enable them to launch new decentralized applications quickly and easily. Whether a minimum viable product or full-scale production software, Insolar builds and integrates applications for your enterprise's existing systems.
 
-To get a grip on how Insolar works, take a look at its :ref:`architecture overview <architecture>`.
+Insolar’s vision is to facilitate seamless low friction interactions between companies by distributing trust, thus accelerating and opening up new opportunities for innovation and value creation.
+
+.. _quick_start:
+
+Quick Start
+-----------
+
+To start the deep dive into Insolar's architecture, take a look at its :ref:`basics <basics>`.
 
 To connect to TestNet 1.1, go through :ref:`step-by-step instructions <connecting_to_testnet>`.
-
-To learn how to form and send signed requests to Insolar's API, go through a :ref:`tutorial <building_requester>`.
-
-.. // TODO: Develop a documentation entry point (main page) upon the content's readiness.
 
 .. toctree::
    :maxdepth: 2
    :caption: Overview
 
-   about
-   features
+   basics
    architecture
    glossary
-
-.. // "Integration" below is a [WIP] title later to be expanded into a collection of how-to guides and renamed appropriately (if required).
  
 .. toctree::
    :maxdepth: 2
    :caption: Integration
 
    integration
-
-.. toctree::
-   :maxdepth: 2
-   :caption: API cookbook
-
-   requester

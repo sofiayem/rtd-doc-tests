@@ -19,7 +19,7 @@
 
 project = 'Insolar'
 copyright = '2019, Insolar'
-author = 'Sofia Yemelianova and collaborators'
+author = 'Insolar Team'
 
 # The full version, including alpha/beta/rc tags
 release = '1.0'
@@ -36,7 +36,7 @@ extensions = [
 	'sphinx_tabs.tabs',
 	'sphinxcontrib.plantuml',
 	'sphinx_copybutton',
-    'sphinxcontrib.contentui'
+	'sphinxcontrib.contentui'
 ]
 
 plantuml_output_format = 'svg'
