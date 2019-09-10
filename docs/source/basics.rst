@@ -125,4 +125,4 @@ Technically, a :term:`domain <domain>` is a special smart contract that defines 
 
 Since Insolar's code is open-sourced, it can be deployed and used publicly in a permissionless setup. But any enterprise that requires a private setup and permissioned access can deploy such a setup with carefully implemented domains. Additionally, domains offer enough flexibility to allow the deployment of hybrid public/private networks with complex permissioning schemes.
 
-To continue the deep dive into Insolar's technologies, take a closer look at it :ref:`architecture <architecture>`.
+To continue the deep dive into Insolar's technologies, take a closer look at its :ref:`architecture <architecture>`.
