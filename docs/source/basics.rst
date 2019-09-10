@@ -110,6 +110,7 @@ A typical setup for any medium-to-large enterprise has the following aspects to 
 #. Access rights to information. Not all counterparties to, e.g., a derivative trade or trade finance will give the green light to exposing significant conditions to certain participants. Usually, in trade context, some conditions are kept secret from competitors and all conditions are accessible to, e.g., regulatory bodies. So, permissioned access to certain objects is a requirement.
 
 #. Validation procedures after all actors underwent the KYC. Any enterprise has operation departments to check, validate, and settle everything. The enterprise needs custom validation procedures to make sure that:
+
    * all conditions have been met,
    * the sequence of events has been justified,
    * all legally binding documents are ensured by cryptography; etc.
