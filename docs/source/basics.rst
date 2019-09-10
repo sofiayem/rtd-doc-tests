@@ -33,8 +33,8 @@ To achieve scalability and transparency from the ground up, Insolar introduces s
 
 .. _processing_and_persistence:
 
-Processing and Persistence
---------------------------
+Processing & Persistence
+------------------------
 
 Every actor (enterprise), however big and reliable, is having a hard time:
 
