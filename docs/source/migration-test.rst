@@ -28,7 +28,7 @@ Additionally, you need to understand the following:
 Test Scenario Overview
 ----------------------
 
-To test token migration, you need to go through the following steps:
+To grasp what you will be doing, take a look at the steps of the test scenario:
 
 #. Create a MetaMask wallet and, inside, switch to Ropsten test network and add the INS custom token.
 #. Get Ropsten test ETH coins.
