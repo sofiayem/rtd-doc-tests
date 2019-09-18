@@ -32,3 +32,9 @@ To connect to TestNet 1.1, go through :ref:`step-by-step instructions <connectin
    :caption: Integration
 
    integration
+
+.. toctree::
+   :maxdepth: 2
+   :caption: API cookbook
+
+   requester
