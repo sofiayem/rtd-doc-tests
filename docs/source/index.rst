@@ -19,6 +19,8 @@ To start the deep dive into Insolar's architecture, take a look at its :ref:`bas
 
 To connect to TestNet 1.1, go through :ref:`step-by-step instructions <connecting_to_testnet>`.
 
+To build a requester to Insolar's API, :ref:`complete the tutorial <building_requester>`.
+
 .. toctree::
    :maxdepth: 2
    :caption: Overview
@@ -32,9 +34,10 @@ To connect to TestNet 1.1, go through :ref:`step-by-step instructions <connectin
    :caption: Integration
 
    integration
+   migration-test
 
 .. toctree::
    :maxdepth: 2
-   :caption: API cookbook
+   :caption: API Cookbook
 
    requester
