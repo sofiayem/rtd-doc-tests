@@ -3,7 +3,7 @@
 Testing Token Migration
 =======================
 
-This test scenario walks you though the process of acquiring test INS tokens and swapping them for test XNS coins.
+This test scenario walks you though the process of acquiring test INS tokens and swapping them to test XNS coins.
 
 During the testing period of the Insolar MainNet, all operations will be performed with test XNS coins (native for MainNet).
 
