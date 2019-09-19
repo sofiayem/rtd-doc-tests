@@ -175,6 +175,8 @@ To acquire, first, test ETH, then swap them to test INS tokens:
    .. image:: imgs/gas-limit.png
       :width: 300px
 
+   |
+
    .. caution:: If the gas limit value is lower than 80,000, the token contract will fail.
 
 #. Back on the **Send ETH** screen, click :guilabel:`Next`:
@@ -186,6 +188,8 @@ To acquire, first, test ETH, then swap them to test INS tokens:
 
    .. image:: imgs/finally-confirm.png
       :width: 300px
+
+   |
 
 #. Repeat the procedure of sending ETH to INS token contract several more times to acquire enough test INS tokens.
 
