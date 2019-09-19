@@ -190,7 +190,7 @@ To acquire, first, test ETH, then swap them to test INS tokens:
    .. image:: imgs/meta-wallet-setup.png
       :width: 700px
 
-   Next, migrate test INS token to the Insolar network. The migration will automatically swap the test INS tokens to test XNS coins.
+Next, migrate test INS token to the Insolar network. The migration will automatically swap the test INS tokens to test XNS coins.
 
 .. _migrate_test_tokens:
 
@@ -262,4 +262,4 @@ To migrate the test INS tokens and swap them to XNS coins:
 
    Once the transaction is processed by the Ropsten test network, your XNS test coins will appear in the Insolar Wallet.
 
-   This concludes the migration test.
+This concludes the migration test.
