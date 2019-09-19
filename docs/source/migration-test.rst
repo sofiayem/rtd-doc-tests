@@ -98,6 +98,8 @@ To create and set up a MetaMask Ethereum wallet:
    .. image:: imgs/wallet-setup.png
       :width: 700px
 
+   |
+
 .. _acquire_test_tokens_and_swap:
 
 Acquiring Test ETH Coins and Swapping Them to Test INS Tokens
@@ -158,6 +160,8 @@ To acquire, first, test ETH, then swap them to test INS tokens:
 
    .. image:: imgs/meta-transfer-details.png
       :width: 300px
+
+   |
 
 #. On the **Send Tokens** screen, first, click :guilabel:`Max` to send all test ETHers, then :guilabel:`Advanced Options` to set the gas value:
 
@@ -242,6 +246,8 @@ To migrate the test INS tokens and swap them to XNS coins:
 
    .. image:: imgs/meta-send-ins.png
       :width: 700px
+
+   |
 
 #. On the **Add Recipient** screen, paste the copied migration address to the search field:
 
