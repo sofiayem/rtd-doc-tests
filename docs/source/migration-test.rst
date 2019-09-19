@@ -187,7 +187,7 @@ To acquire, first, test ETH, then swap them to test INS tokens:
    .. image:: imgs/finally-confirm.png
       :width: 300px
 
-   Repeat the procedure of sending ETH to INS token contract several more times to acquire enough test INS tokens.
+#. Repeat the procedure of sending ETH to INS token contract several more times to acquire enough test INS tokens.
 
    Once the corresponding transactions are confirmed, the MetaMask wallet is set up to operate test INS tokens:
 
