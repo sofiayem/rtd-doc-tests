@@ -131,7 +131,7 @@ To acquire, first, test ETH, then swap them to test INS tokens:
    .. image:: imgs/connect-request.png
       :width: 300px
 
-   Once connected, you can click :guilabel:`request 1 ether from faucet` several times more. The corresponding transaction entries will appear below:
+   Once connected, you can click :guilabel:`request 1 ether from faucet` several times more (maximum 6). The corresponding transaction entries will appear below:
 
    .. image:: imgs/test-eth-txes.png
       :width: 450px
@@ -163,7 +163,9 @@ To acquire, first, test ETH, then swap them to test INS tokens:
 
    |
 
-#. On the **Send Tokens** screen, first, click :guilabel:`Max` to send all test ETHers, then :guilabel:`Advanced Options` to set the gas value:
+#. On the **Send ETH** screen, you do not need to send actual ETH to the token contract but a small amount of ETH will be automatically subtracted to pay for transaction processing.
+   
+   However, setting the correct gas value is required. To set it, click :guilabel:`Advanced Options`:
 
    .. image:: imgs/advanced-options.png
       :width: 300px
