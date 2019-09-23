@@ -26,7 +26,7 @@ The requester forms and sends the following requests to the Insolar’s JSON RPC
 #. Forms, signs, and sends a **transfer** request with another seed that sends an amount of Insolar coins (XNS):
 
    * from your member’s account given your reference received in the previous response;
-   * to another’s account given a reference to the recipient's member.
+   * to another’s account given a reference to the recipient member.
 
 .. _what_you_will_need:
 
@@ -39,8 +39,8 @@ What You Will Need
   * Golang,
   * or Java.
 
-* Insolar's API specification as a reference.
-* Local Insolar deployment for testing.
+* Insolar API specification as a reference.
+* Local Insolar deployment or testing environment provided by Insolar.
 
 .. _how_to_complete:
 
@@ -50,7 +50,7 @@ How to Complete This Tutorial
 * To start from scratch, go through the :ref:`step-by-instructions <build_requester>` listed below and:
 
   #. Click on the tabs that correspond to your programming language of choice (currently, Golang or Java) to see relevant code examples.
-  #. Pay attention to comments in the examples.
+  #. Pay attention to comments in code examples.
 
 * To skip the basics, read (and copy-paste) the working :ref:`requester code <requester_example>` provided at the end.
 
@@ -61,7 +61,7 @@ Building the Requester
 
 To build the requester, go through the following steps:
 
-#. **Prepare**: install the necessary tools, set up a local Insolar deployment, import the necessary packages, and initialize an HTTP client.
+#. **Prepare**: install the necessary tools, import the necessary packages, and initialize an HTTP client.
 
 #. **Declare** request **structures** (Golang) or **classes** (Java) in accordance with the Insolar’s API specification.
 
@@ -75,7 +75,7 @@ To build the requester, go through the following steps:
 
 #. **Form a transfer request** and, again, call the sender function.
 
-#. **Test** the requester against a local Insolar deployment.
+#. **Test** the requester against the testing environment.
 
 All the above steps are detailed in sections below.
 
@@ -84,102 +84,14 @@ All the above steps are detailed in sections below.
 Step 1: Prepare
 ~~~~~~~~~~~~~~~
 
-To build the requester, install and set up the following:
+To build the requester, install, import, and set up the following:
 
 #. Set up your development environment if you do not have one. Install one of the following:
 
    * `Go programming tools <https://golang.org/doc/install>`_;
    * `Java programming tools <https://java.com/en/download/help/download_options.xml>`_.
 
-   .. _maven_file:
-
-#. (**Only Java**) Create a ``pom.xml`` file to contain information about the project and configuration details used by Maven to build it:
-
-   .. toggle-header::
-      :header: ``pom.xml`` **Show/Hide**
-
-      .. code-block:: xml
-         :linenos:
-
-         <?xml version="1.0" encoding="UTF-8"?>
-         <project xmlns="http://maven.apache.org/POM/4.0.0"
-                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-             <modelVersion>4.0.0</modelVersion>
-
-             <groupId>requester</groupId>
-             <artifactId>requester-java-example</artifactId>
-             <version>1.0-SNAPSHOT</version>
-
-             <properties>
-                 <java.version>11</java.version>
-             </properties>
-
-             <dependencies>
-                 <dependency>
-                     <groupId>org.bouncycastle</groupId>
-                     <artifactId>bcprov-jdk15on</artifactId>
-                     <version>1.60</version>
-                 </dependency>
-                 <dependency>
-                     <groupId>org.bouncycastle</groupId>
-                     <artifactId>bcpkix-jdk15on</artifactId>
-                     <version>1.51</version>
-                 </dependency>
-                 <dependency>
-                     <groupId>org.json</groupId>
-                     <artifactId>json</artifactId>
-                     <version>20180813</version>
-                 </dependency>
-                 <dependency>
-                     <groupId>com.google.code.gson</groupId>
-                     <artifactId>gson</artifactId>
-                     <version>2.8.5</version>
-                 </dependency>
-             </dependencies>
-             
-             <build>
-                 <plugins>
-                     <plugin>
-                         <groupId>org.apache.maven.plugins</groupId>
-                         <artifactId>maven-compiler-plugin</artifactId>
-                         <version>3.8.0</version>
-                         <configuration>
-                             <release>11</release>
-                         </configuration>
-                     </plugin>
-
-                     <plugin>
-                         <groupId>org.apache.maven.plugins</groupId>
-                         <artifactId>maven-assembly-plugin</artifactId>
-                         <executions>
-                             <execution>
-                                 <phase>package</phase>
-                                 <goals>
-                                     <goal>single</goal>
-                                 </goals>
-                                 <configuration>
-                                     <archive>
-                                         <manifest>
-                                             <mainClass>
-                                                 requester.Main
-                                             </mainClass>
-                                         </manifest>
-                                     </archive>
-                                     <descriptorRefs>
-                                         <descriptorRef>jar-with-dependencies</descriptorRef>
-                                     </descriptorRefs>
-                                 </configuration>
-                             </execution>
-                         </executions>
-                     </plugin>
-
-                 </plugins>
-             </build>
-             
-         </project>
-
-   |
+   .. note:: In Java, building this project via Maven requires a ``pom.xml`` file. A sample of this file is provided in the :ref:`testing section <test_requester>`.
 
 #. With the Golang or Java programming tools, you do not need to “reinvent the wheel”: create a ``Main.go`` or ``Main.java`` file and, inside, import the packages your requester will use. For example:
 
@@ -259,7 +171,8 @@ To build the requester, install and set up the following:
       * (**Java**) Since the program has to contain a main class, declare it to wrap all the required functionality.
 
       .. _set_url:
-   #. Set the endpoint URL for local deployment. It can be changed to a production one after testing.
+
+   #. Set the API endpoint URL for the testing environment, either the public one provided by Insolar or :ref:`locally deployed <setting_up_devnet>`.
    #. Create and initialize an HTTP client for connection re-use.
    #. Create a variable for the JSON RPC 2.0 request identifier. The identifier is to be incremented for every request and each corresponding response will contain it.
 
@@ -278,9 +191,9 @@ To build the requester, install and set up the following:
                R, S *big.Int
             }
 
-            // Set the endpoint URL for local deployment (is to be changed to a production URL):
+            // Set the endpoint URL for the testing environment:
             const (
-               url = "http://127.0.0.1:19101/api/"
+               url = "http://127.0.0.1:19101/api/rpc"
             )
 
             // Create and initialize an HTTP client for connection re-use:
@@ -303,8 +216,8 @@ To build the requester, install and set up the following:
             // Declare a main class to wrap all the required functionality:
             public class Main {
 
-                // Set the endpoint URL for local deployment (is to be changed to a production URL):
-                private static final String API_URL = "http://localhost:19101/api";
+                // Set the endpoint URL for the testing environment:
+                private static final String API_URL = "http://127.0.0.1:19101/api/rpc";
 
                 // Create and initialize an HTTP client for connection re-use:
                 private static final HttpClient client = HttpClient.newBuilder().build();
@@ -344,7 +257,7 @@ For example:
 
          // Continue in the Main.go file...
 
-         // Declare a nested structure to form requests to Insolar's API in accordance with the specification.
+         // Declare a nested structure to form requests to Insolar API in accordance with the specification.
          // The Platform uses the basic JSON RPC 2.0 request structure:
          type requestBody struct {
             JSONRPC        string         `json:"jsonrpc"`
@@ -390,7 +303,7 @@ For example:
          // Declare a class to build a request:
          public static class Schema {
 
-           // Declare a class to form requests to Insolar's API in accordance with the specification.
+           // Declare a class to form requests to Insolar API in accordance with the specification.
            // The Platform uses the basic JSON RPC 2.0 request structure:
            public static class requestBody {
                @SerializedName("jsonrpc")
@@ -491,13 +404,15 @@ Now that the requester knows which information and contract requests it is suppo
 Step 3: Create a Seed Getter
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Each signed request to Insolar's API has to contain a seed in its body. Seed is a unique piece of information that:
+Each signed request to Insolar API has to contain a seed in its body. Seed is a unique piece of information generated by a node that:
 
-   * grants permission to send a request;
-   * has a short lifespan;
-   * expires upon first use.
+* has a short lifespan;
+* expires upon first use;
+* protects from request fakes, i.e., duplicate requests sent by a malicious party sniffing the traffic. This ensures that a *single funds transfer request* can only be sent once by the owner of the funds.
 
-   .. tip:: Due to these qualities, a new seed is required to form each signed contract request.
+.. tip:: Due to these qualities, a new seed is required to form each signed contract request.
+
+.. caution:: Since the seed is generated by a node, each subsequent contract request containing the seed must be sent to the node in question. Otherwise, a node will reject the seed generated by a different one. To ensure that the contract request is routed to the correct node, retrieve a cookie from a response to the seed request. Later, the cookie is to be passed to the contract request sender function.
 
 To be able to send signed requests, create a seed getter function to re-use upon forming each such request.
 
@@ -506,7 +421,7 @@ The seed getter:
 #. Forms a ``node.getSeed`` request body in JSON format.
 #. Creates an *unsigned* HTTP request with the body and a Content-Type (``application/json``) HTTP header.
 #. Sends the request and receives a response.
-#. Retrieves the acquired seed from the response and returns it.
+#. Retrieves the acquired seed and cookie from the response and returns them.
 
 For example:
 
@@ -521,82 +436,112 @@ For example:
          // Continue in the Main.go file...
 
          // Create a function to get a new seed for each signed request:
-         func getNewSeed() string {
-             // Form a request body for getSeed:
-             getSeedReq := requestBody{
-                 JSONRPC: "2.0",
-                 Method:  "node.getSeed",
-                 ID:      id,
-             }
-             // Increment the id for future requests:
-             id++
+         func getNewSeed() (string, *http.Cookie) {
+            // Form a request body for getSeed:
+            getSeedReq := requestBody{
+               JSONRPC: "2.0",
+               Method:  "node.getSeed",
+               ID:      id,
+            }
+            // Increment the id for future requests:
+            id++
 
-             // Marshal the payload into JSON:
-             jsonSeedReq, err := json.Marshal(getSeedReq)
-             if err != nil {
-                 log.Fatalln(err)
-             }
+            // Marshal the payload into JSON:
+            jsonSeedReq, err := json.Marshal(getSeedReq)
+            if err != nil {
+               log.Fatalln(err)
+            }
 
-             // Create a new HTTP request and send it:
-             seedReq, err := http.NewRequest("POST", url+"rpc", bytes.NewBuffer(jsonSeedReq))
-             if err != nil {
-                 log.Fatalln(err)
-             }
-             seedReq.Header.Set("ContentType", "application/json")
-             seedResponse, err := client.Do(seedReq)
-             if err != nil {
-                 log.Fatalln(err)
-             }
-             defer seedReq.Body.Close()
+            // Create a new HTTP request and send it:
+            seedReq, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonSeedReq))
+            if err != nil {
+               log.Fatalln(err)
+            }
+            seedReq.Header.Set("ContentType", "application/json")
 
-             // Receive the response body:
-             seedRespBody, err := ioutil.ReadAll(seedResponse.Body)
-             if err != nil {
-                 log.Fatalln(err)
-             }
+            // Perform the request:
+            seedResponse, err := client.Do(seedReq)
+            if err != nil {
+               log.Fatalln(err)
+            }
+            defer seedReq.Body.Close()
 
-             // Unmarshal the response:
-             var newSeed map[string]interface{}
-             err = json.Unmarshal(seedRespBody, &newSeed)
-             if err != nil {
-                 log.Fatalln(err)
-             }
+            // Retrieve the cookie to pass it to a subsequent request and route the request to the correct node:
+            var cookie *http.Cookie
+            cookies := seedResponse.Cookies()
+            if(len(cookies) > 0) {
+               cookie = cookies[0]
+            }
 
-             // (Optional) Print the request and its response:
-             print := "POST to " + url+"call" +
-             "\nPayload: " + string(jsonSeedReq) +
-             "\nResponse status code: " +  strconv.Itoa(seedResponse.StatusCode) +
-             "\nResponse: " + string(seedRespBody) + "\n"
-             fmt.Println(print)
+            // Receive the response body:
+            seedRespBody, err := ioutil.ReadAll(seedResponse.Body)
+            if err != nil {
+               log.Fatalln(err)
+            }
 
-             // Retrieve and return the current seed:
-             return newSeed["result"].(map[string]interface{})["Seed"].(string)
+            // Unmarshal the response:
+            var newSeed map[string]interface{}
+            err = json.Unmarshal(seedRespBody, &newSeed)
+            if err != nil {
+               log.Fatalln(err)
+            }
+
+            // (Optional) Print the request and its response:
+            print := "POST to " + url +
+               "\nPayload: " + string(jsonSeedReq) +
+               "\nResponse status code: " +  strconv.Itoa(seedResponse.StatusCode) +
+               "\nResponse: " + string(seedRespBody) + "\n"
+            fmt.Println(print)
+
+            // Retrieve and return the current seed and cookie:
+            return newSeed["result"].(map[string]interface{})["seed"].(string), cookie
          }
 
    .. tab-container:: Java
       :title: Java: Main.java
+
+      .. tip:: In Java, to return multiple values (seed and cookie), define a class with the appropriate structure and make the function return its instance.
 
       .. code-block:: Java
          :linenos:
 
          // Continue in the Main class...
 
-         // Create a function to get a new seed for each signed request:
-         private static String getNewSeed() throws Exception {
+         // Create a class for the seed getter's return values (seed and cookie):
+         public static class Pair {
+           private String seed;
+           private String cookie;
 
+           public Pair(String seed, String cookie) {
+               this.seed = seed;
+               this.cookie = cookie;
+           }
+
+           public String getSeed() {
+               return seed;
+           }
+
+           public String getCookie() {
+               return cookie;
+           }
+         }
+
+         // Create a function to get a new seed for each signed request:
+         private static Pair getNewSeed() throws Exception {
            // Form a request body for getSeed and format it into JSON:
            String seedRequest = new Schema.requestBody().withMethod("node.getSeed").withID(id).toJson();
            // Increment the id for future requests:
            id++;
 
            // Create a new HTTP request and send it:
-           URL url = new URL(API_URL.concat("/rpc"));
+           URL url = new URL(API_URL);
            HttpRequest request = HttpRequest.newBuilder()
                    .POST(HttpRequest.BodyPublishers.ofString(seedRequest))
                    .header("Content-Type", "application/json; utf-8")
                    .uri(url.toURI())
                    .build();
            HttpResponse<String> send = client.send(request, HttpResponse.BodyHandlers.ofString());
+
            assert send.statusCode() == 200;
 
            // Receive the response body:
@@ -607,17 +552,20 @@ For example:
                    .append("\n")
                    .append("Payload: ")
                    .append(seedRequest)
-                   .append("\nResponse status code = ").append(send.statusCode())
+                   .append("\nResponse status code: ").append(send.statusCode())
                    .append("\nResponse: ").append(response)
                    .append("\n")
                    .toString();
            System.out.println(req);
 
-           // Retrieve and return the current seed:
-           return new JSONObject(response).getJSONObject("result").getString("Seed");
+           // Retrieve and return the current seed and cookie:
+           String seed =  new JSONObject(response).getJSONObject("result").getString("seed");
+           String cookie = send.headers().firstValue("Set-Cookie").orElse(null);
+           return new Pair(seed, cookie);
          }
 
-Now, every ``getNewSeed()`` call will return a living seed that can be put into the contract request's body.
+
+Now, every ``getNewSeed()`` call will return a living seed that can be put into the contract request's body and a cookie to ensure that the subsequent contract request is routed to the correct node.
 
 The next step is to create a sender function that signs and sends contract requests.
 
@@ -628,7 +576,7 @@ Step 4: Create a Sender Function
 
 The sender function:
 
-#. Takes some request's body (payload) and an ECDSA private key.
+#. Takes some request's body (payload), ECDSA private key, and the cookie retrieved from previous seed request. The cookie ensures that the contract request is to be routed to the node that generated the seed.
 #. Forms an HTTP request with the payload and relevant HTTP headers:
 
    #. *Content-Type* — ``application/json``.
@@ -636,7 +584,7 @@ The sender function:
    #. *Signature* that contains (1) the ECDSA signature of the hash's bytes (2) in the ASN.1 DER format (3) represented as a Base64 string.
 
 #. Sends the request.
-#. Returns the response's JSON object.
+#. Returns the response JSON object.
 
 For example:
 
@@ -653,78 +601,81 @@ For example:
          // Continue in the Main.go file...
 
          // Create a function to send signed requests:
-         func sendSignedRequest(payload requestBody, privateKey *ecdsa.PrivateKey) map[string]interface{} {
-             // Marshal the payload into JSON:
-             jsonPayload, err := json.Marshal(payload)
-             if err != nil {
-                 log.Fatalln(err)
-             }
+         func sendSignedRequest(payload requestBody, privateKey *ecdsa.PrivateKey, cookie *http.Cookie) map[string]interface{} {
+            // Marshal the payload into JSON:
+            jsonPayload, err := json.Marshal(payload)
+            if err != nil {
+               log.Fatalln(err)
+            }
 
-             // Take a SHA-256 hash of the payload's bytes:
-             hash := sha256.Sum256(jsonPayload)
+            // Take a SHA-256 hash of the payload's bytes:
+            hash := sha256.Sum256(jsonPayload)
 
-             // Sign the hash with the private key:
-             r, s, err := ecdsa.Sign(rand.Reader, privateKey, hash[:])
-             if err != nil {
-                 log.Fatalln(err)
-             }
+            // Sign the hash with the private key:
+            r, s, err := ecdsa.Sign(rand.Reader, privateKey, hash[:])
+            if err != nil {
+               log.Fatalln(err)
+            }
 
-             // Convert the signature into ASN.1 DER format:
-             sig := ecdsaSignature{
-                 R: r,
-                 S: s,
-             }
-             signature, err := asn1.Marshal(sig)
-             if err != nil {
-                 log.Fatalln(err)
-             }
+            // Convert the signature into ASN.1 DER format:
+            sig := ecdsaSignature{
+               R: r,
+               S: s,
+            }
+            signature, err := asn1.Marshal(sig)
+            if err != nil {
+               log.Fatalln(err)
+            }
 
-             // Convert both hash and signature into a Base64 string:
-             hash64 := base64.StdEncoding.EncodeToString(hash[:])
-             signature64 := base64.StdEncoding.EncodeToString(signature)
+            // Convert both hash and signature into a Base64 string:
+            hash64 := base64.StdEncoding.EncodeToString(hash[:])
+            signature64 := base64.StdEncoding.EncodeToString(signature)
 
-             // Create a new request and set its headers:
-             request, err := http.NewRequest("POST", url+"call", bytes.NewBuffer(jsonPayload))
-             if err != nil {
-                 log.Fatalln(err)
-             }
-             request.Header.Set("ContentType", "application/json")
+            // Create a new request and set its headers:
+            request, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonPayload))
+            if err != nil {
+               log.Fatalln(err)
+            }
+            request.Header.Set("ContentType", "application/json")
 
-             // Put the hash string into the HTTP Digest header:
-             request.Header.Set("Digest", "SHA-256="+hash64)
+            // Put the hash string into the HTTP Digest header:
+            request.Header.Set("Digest", "SHA-256="+hash64)
 
-             // Put the signature string into the HTTP Signature header:
-             request.Header.Set("Signature", "keyId=\"public-key\", algorithm=\"ecdsa\", headers=\"digest\", signature="+signature64)
+            // Put the signature string into the HTTP Signature header:
+            request.Header.Set("Signature", "keyId=\"public-key\", algorithm=\"ecdsa\", headers=\"digest\", signature="+signature64)
 
-             // Send the signed request:
-             response, err := client.Do(request)
-             if err != nil {
-                 log.Fatalln(err)
-             }
-             defer response.Body.Close()
+             // Set cookie to route the request to the node that generated the seed:
+            request.AddCookie(cookie)
 
-             // Receive the response body:
-             responseBody, err := ioutil.ReadAll(response.Body)
-             if err != nil {
-                 log.Fatalln(err)
-             }
+            // Send the signed request:
+            response, err := client.Do(request)
+            if err != nil {
+               log.Fatalln(err)
+            }
+            defer response.Body.Close()
 
-             // Unmarshal it into a JSON object:
-             var JSONObject map[string]interface{}
-             err = json.Unmarshal(responseBody, &JSONObject)
-             if err != nil {
-                 log.Fatalln(err)
-             }
+            // Receive the response body:
+            responseBody, err := ioutil.ReadAll(response.Body)
+            if err != nil {
+               log.Fatalln(err)
+            }
 
-             // (Optional) Print the request and its response:
-             print := "POST to " + url+"call" +
-             "\nPayload: " + string(jsonPayload) +
-             "\nResponse status code: " + strconv.Itoa(response.StatusCode) +
-             "\nResponse: " + string(responseBody) + "\n"
-             fmt.Println(print)
+            // Unmarshal it into a JSON object:
+            var JSONObject map[string]interface{}
+            err = json.Unmarshal(responseBody, &JSONObject)
+            if err != nil {
+               log.Fatalln(err)
+            }
 
-             // Return the response:
-             return JSONObject
+            // (Optional) Print the request and its response:
+            print := "POST to " + url +
+               "\nPayload: " + string(jsonPayload) +
+               "\nResponse status code: " + strconv.Itoa(response.StatusCode) +
+               "\nResponse: " + string(responseBody) + "\n"
+            fmt.Println(print)
+
+            // Return the response:
+            return JSONObject
          }
 
    .. tab-container:: Java
@@ -736,73 +687,74 @@ For example:
          // Continue in the Main class...
 
          // Create a function to send signed requests:
-         private static JSONObject sendSignedRequest(String requestBody, PrivateKey privateKey) throws Exception {
+         private static JSONObject sendSignedRequest(String requestBody, PrivateKey privateKey, String cookie) throws Exception {
 
-             // Take a SHA-256 hash of the payload's bytes:
-             byte[] payload = requestBody.getBytes("UTF-8");
-             MessageDigest detester = MessageDigest.getInstance("SHA-256");
-             detester.update(payload);
-             byte[] digest = detester.digest();
+           // Take a SHA-256 hash of the payload's bytes:
+           byte[] payload = requestBody.getBytes("UTF-8");
+           MessageDigest detester = MessageDigest.getInstance("SHA-256");
+           detester.update(payload);
+           byte[] digest = detester.digest();
 
-             // Sign the hash with the private key:
-             Signature ecdsaSign = Signature.getInstance("SHA256withECDSA", "BC");
-             ecdsaSign.initSign(privateKey);
-             ecdsaSign.update(payload);
-             byte[] signature = ecdsaSign.sign();
+           // Sign the hash with the private key:
+           Signature ecdsaSign = Signature.getInstance("SHA256withECDSA", "BC");
+           ecdsaSign.initSign(privateKey);
+           ecdsaSign.update(payload);
+           byte[] signature = ecdsaSign.sign();
 
-             // Convert the signature into ASN.1 DER format:
-             ASN1InputStream asn1 = new ASN1InputStream(signature);
-             DLSequence dlSequence = (DLSequence) asn1.readObject();
-             BigInteger r = ((ASN1Integer) dlSequence.getObjectAt(0)).getPositiveValue();
-             BigInteger s = ((ASN1Integer) dlSequence.getObjectAt(1)).getPositiveValue();
-             ByteArrayOutputStream bos = new ByteArrayOutputStream();
-             DERSequenceGenerator seq = new DERSequenceGenerator(bos);
-             seq.addObject(new ASN1Integer(r));
-             seq.addObject(new ASN1Integer(s));
-             seq.close();
-             byte[] derSignature = bos.toByteArray();
+           // Convert the signature into ASN.1 DER format:
+           ASN1InputStream asn1 = new ASN1InputStream(signature);
+           DLSequence dlSequence = (DLSequence) asn1.readObject();
+           BigInteger r = ((ASN1Integer) dlSequence.getObjectAt(0)).getPositiveValue();
+           BigInteger s = ((ASN1Integer) dlSequence.getObjectAt(1)).getPositiveValue();
+           ByteArrayOutputStream bos = new ByteArrayOutputStream();
+           DERSequenceGenerator seq = new DERSequenceGenerator(bos);
+           seq.addObject(new ASN1Integer(r));
+           seq.addObject(new ASN1Integer(s));
+           seq.close();
+           byte[] derSignature = bos.toByteArray();
 
-             // Convert both hash and signature into a Base64 string:
-             String digest64 = Base64.getEncoder().encodeToString(digest);
-             String signature64 = Base64.getEncoder().encodeToString(derSignature);
+           // Convert both hash and signature into a Base64 string:
+           String digest64 = Base64.getEncoder().encodeToString(digest);
+           String signature64 = Base64.getEncoder().encodeToString(derSignature);
 
-             // Put the hash string into the HTTP Digest header:
-             String digestHeader = "SHA-256=" + digest64;
-             // Put the signature string into the HTTP Signature header:
-             String signatureHeader = "keyId=\"member-pub-key\", algorithm=\"ecdsa\", headers=\"digest\", signature=" + signature64;
+           // Put the hash string into the HTTP Digest header:
+           String digestHeader = "SHA-256=" + digest64;
+           // Put the signature string into the HTTP Signature header:
+           String signatureHeader = "keyId=\"member-pub-key\", algorithm=\"ecdsa\", headers=\"digest\", signature=" + signature64;
 
-             // Create a new request and send it:
-             URL url = new URL(API_URL.concat("/call"));
-             HttpRequest request = HttpRequest.newBuilder()
-                     .POST(HttpRequest.BodyPublishers.ofString(requestBody))
-                     .header("Content-Type", "application/json; utf-8")
-                     .header("Digest", digestHeader)
-                     .header("Signature", signatureHeader)
-                     .uri(url.toURI())
-                     .build();
-             HttpResponse<String> send = client.send(request, HttpResponse.BodyHandlers.ofString());
+           // Create a new request, pass the cookie to route the request to the correct node, and send it:
+           URL url = new URL(API_URL);
+           HttpRequest request = HttpRequest.newBuilder()
+                   .POST(HttpRequest.BodyPublishers.ofString(requestBody))
+                   .header("Content-Type", "application/json; utf-8")
+                   .header("Digest", digestHeader)
+                   .header("Signature", signatureHeader)
+                   .header("Cookie", cookie)
+                   .uri(url.toURI())
+                   .build();
+           HttpResponse<String> send = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-             assert send.statusCode() == 200;
+           assert send.statusCode() == 200;
 
-             // Receive the response:
-             String response = send.body();
+           // Receive the response:
+           String response = send.body();
 
-             // (Optional) Print the request and its response:
-             String req = new StringBuilder("\n\nPOST to ").append(url)
-                     .append("\n")
-                     .append("Payload: ")
-                     .append(requestBody)
-                     .append("\nResponse status code = ").append(send.statusCode())
-                     .append("\nResponse: ").append(response)
-                     .append("\n")
-                     .toString();
-             System.out.println(req);
+           // (Optional) Print the request and its response:
+           String req = new StringBuilder("\n\nPOST to ").append(url)
+                   .append("\n")
+                   .append("Payload: ")
+                   .append(requestBody)
+                   .append("\nResponse status code = ").append(send.statusCode())
+                   .append("\nResponse: ").append(response)
+                   .append("\n")
+                   .toString();
+           System.out.println(req);
 
-             // Return the response:
-             return new JSONObject(response);
+           // Return the response:
+           return new JSONObject(response);
          }
 
-Now, every ``sendSignedRequest(payload, privateKey)`` call will return the result of a contract method.
+Now, every ``sendSignedRequest(payload, privateKey, cookie)`` call will return the result of a contract method.
 
 With the seed getter and sender functions, you can get the seed and send signed contract requests. The next step is to generate a key pair.
 
@@ -815,7 +767,7 @@ The body of each request that calls a contract's method must be hashed by a ``SH
 
 To be able to sign requests, do the following:
 
-#. Generate a key pair using the said curve an convert it into PEM format.
+#. Generate a key pair using the said curve and convert it into PEM format.
 
    .. warning:: You will not be able to access your member object without the private key and, as such, transfer funds.
 
@@ -927,7 +879,7 @@ To create a member:
 
 #. Call the ``getNewSeed()`` function and store the new seed into a variable.
 #. Form the ``member.create`` request's payload with the seed and the public key generated in the :ref:`previous step <generate_key_pair>`.
-#. Call the ``sendSignedRequest()`` function and pass it the payload and the paired private key.
+#. Call the ``sendSignedRequest()`` function and pass it the payload, private key, and cookie.
 #. Put the returned member reference into a variable. The subsequent transfer request requires it.
 
 For example:
@@ -942,27 +894,27 @@ For example:
 
          // Continue in the main() function...
 
-         // Get a seed to form the request:
-         seed := getNewSeed()
+         // Get a seed and cookie to form the request:
+         seed, cookie := getNewSeed()
          // Form a request body for member.create:
          createMemberReq := requestBody{
-             JSONRPC: "2.0",
-             Method:  "api.call",
-             ID:      id,
-             Params:params {
-                 Seed: seed,
-                 CallSite: "member.create",
-                 CallParams:memberCreateCallParams {},
-                 PublicKey: string(pemPublicKey),},
+            JSONRPC: "2.0",
+            Method:  "contract.call",
+            ID:      id,
+            Params:params {
+               Seed: seed,
+               CallSite: "member.create",
+               CallParams:memberCreateCallParams {},
+               PublicKey: string(pemPublicKey),},
          }
          // Increment the JSON RPC 2.0 request identifier for future requests:
          id++
 
-         // Send the signed member.create request:
-         newMember := sendSignedRequest(createMemberReq, privateKey)
-
-         // Put the reference to your new member into a variable to send subsequent transfer requests:
+         // Send the signed member.create request and pass the cookie:
+         newMember := sendSignedRequest(createMemberReq, privateKey, cookie)
+         // Put the reference to your new member into a variable to send transfer requests:
          memberReference := newMember["result"].(map[string]interface{})["callResult"].(map[string]interface{})["reference"].(string)
+         fmt.Println("Member reference is " + memberReference)
 
          // The main function is to be continued...
 
@@ -974,8 +926,10 @@ For example:
 
          // Continue in the main() function...
 
-         // Get a seed to form a request:
-         String seed = getNewSeed();
+         // Get a seed and cookie to form a request:
+         Pair seedAndCookie = getNewSeed();
+         String seed = seedAndCookie.getSeed();
+         String cookie = seedAndCookie.getCookie();
          // Form a request body for member.create:
          Schema.Params memberParams = new Schema.Params();
          memberParams.setSeed(seed);
@@ -983,17 +937,18 @@ For example:
          memberParams.setPublicKey(publicKey);
 
          // Form a JSON payload:
-         String createMemberReq = new Schema.requestBody().withMethod("api.call").withParams(memberParams).withID(id).toJson();
+         String createMemberReq = new Schema.requestBody().withMethod("contract.call").withParams(memberParams).withID(id).toJson();
 
          // Increment the JSON RPC 2.0 request identifier for future requests:
          id++;
 
-         // Send the signed member.create request:
-         JSONObject newMember = sendSignedRequest(createMemberReq, keyPair.getPrivate());
+         // Send the signed member.create request and pass the cookie:
+         JSONObject newMember = sendSignedRequest(createMemberReq, keyPair.getPrivate(), cookie);
          assert newMember.isNull("error");
 
          // Put the reference to your new member into a variable to send subsequent transfer requests:
          String memberReference = newMember.getJSONObject("result").getJSONObject("callResult").getString("reference");
+         System.out.println("Member reference is " + memberReference);
 
          // The main function is to be continued...
 
@@ -1008,23 +963,23 @@ The transfer request is a signed request to a contract's method that transfers s
 
 To transfer funds:
 
-#. Acquire the recipient's reference — the reference to a member to whom you want to transfer the funds.
+#. Acquire the recipient reference — the reference to a member to whom you want to transfer the funds.
 #. Call the ``getNewSeed()`` function and store the new seed into a variable.
 #. Form a ``member.transfer`` request's payload with:
 
-   * the new seed,
-   * an amount of funds,
-   * the recipient's reference,
+   * a new seed and cookie,
+   * an amount of funds to transfer,
+   * the recipient reference,
    * your reference (for identification),
    * and your public key (to check the signature).
 
-#. Call the ``sendSignedRequest()`` function and pass it the payload and the paired private key.
+#. Call the ``sendSignedRequest()`` function and pass it the payload, paired private key, and cookie.
 
 The transfer request will return the factual fee value in its response.
 
 For example:
 
-.. attention:: Put the reference to the recipient's member into the ``ToMemberReference`` field value in the highlighted line.
+.. attention:: In the highlighted line, replace the ``<recipient_member_reference>`` placeholder value with the reference to the recipient member.
 
 .. content-tabs::
 
@@ -1037,36 +992,36 @@ For example:
 
          // Continue in the main() function...
 
-         // Get a new seed to form a transfer request:
-         seed = getNewSeed()
+         // Get a new seed and cookie to form a transfer request:
+         seed, cookie = getNewSeed()
          // Form a request body for transfer:
          transferReq := requestBody{
-             JSONRPC: "2.0",
-             Method:  "api.call",
-             ID:      id,
-             Params:paramsWithReference{ params:params{
-                    Seed: seed,
-                    CallSite: "member.transfer",
-                    CallParams:transferCallParams {
-                        Amount: "100",
-                        ToMemberReference: "<reference_to_the_recipient_member>",
-                    },
-                    PublicKey: string(pemPublicKey),
-                 },
-                 Reference: string(memberReference),
-             },
+            JSONRPC: "2.0",
+            Method:  "contract.call",
+            ID:      id,
+            Params:paramsWithReference{ params:params{
+               Seed: seed,
+               CallSite: "member.transfer",
+               CallParams:transferCallParams {
+                  Amount: "100",
+                  ToMemberReference: "<recipient_member_reference>",
+               },
+               PublicKey: string(pemPublicKey),
+            },
+               Reference: string(memberReference),
+            },
          }
          // Increment the id for future requests:
          id++
 
-         // Send the signed transfer request:
-         newTransfer := sendSignedRequest(transferReq, privateKey)
+         // Send the signed transfer request and pass the cookie:
+         newTransfer := sendSignedRequest(transferReq, privateKey, cookie)
          fee := newTransfer["result"].(map[string]interface{})["callResult"].(map[string]interface{})["fee"].(string)
 
-	     // (Optional) Print out the fee.
+         // (Optional) Print out the fee.
          fmt.Println("Fee is " + fee)
 
-         // Close the main function.
+         // Remember to close the main function.
          }
 
    .. tab-container:: Java
@@ -1074,36 +1029,38 @@ For example:
 
       .. code-block:: Java
          :linenos:
-         :emphasize-lines: 11
+         :emphasize-lines: 13
 
          // Continue in the main() function...
 
          // Get a new seed to form a transfer request:
-         seed = getNewSeed();
+         seedAndCookie = getNewSeed();
+         seed = seedAndCookie.getSeed();
+         cookie = seedAndCookie.getCookie();
 
          // Form a request body for transfer:
          Schema.Params transferParams = new Schema.Params();
          transferParams.setSeed(seed);
          transferParams.setCallSite("member.transfer");
          transferParams.setPublicKey(publicKey);
-         transferParams.setCallParams(new Schema.TransferCallParams("100", "<reference_to_the_recipient_member>"));
+         transferParams.setCallParams(new Schema.TransferCallParams("100", "<recipient_member_reference>"));
          transferParams.setReference(memberReference);
 
          // Form a JSON payload:
-         String transferReq = new Schema.requestBody().withMethod("api.call").withParams(transferParams).withID(id).toJson();
+         String transferReq = new Schema.requestBody().withMethod("contract.call").withParams(transferParams).withID(id).toJson();
 
          // Increment the id for future requests:
          id++;
 
          // Send the signed transfer request:
-         JSONObject newTransfer = sendSignedRequest(transferReq, keyPair.getPrivate());
+         JSONObject newTransfer = sendSignedRequest(transferReq, keyPair.getPrivate(), cookie);
          assert newTransfer.isNull("error");
          String fee = newTransfer.getJSONObject("result").getJSONObject("callResult").getString("fee");
 
          // (Optional) Print out the fee.
          System.out.println("Fee is " + fee);
 
-         // Clone the main() function.
+         // Close the main() function.
          }
          // And remember to close the Main class.
          }
@@ -1117,8 +1074,7 @@ Step 8: Test the Requester
 
 To test the requester, do the following:
 
-#. Set up an :ref:`Insolar network locally <setting_up_devnet>`.
-#. Make sure the :ref:`endpoint URL <set_url>` is set to ``http://127.0.0.1:19101/api/``.
+#. Make sure the :ref:`endpoint URL <set_url>` is set to that of the testing environment.
 #. Run the requester:
 
 .. content-tabs::
@@ -1131,25 +1087,111 @@ To test the requester, do the following:
          $ go run Main.go
 
    .. tab-container:: Java
-      :title: Java: Main.java
+      :title: Java
 
-      .. tip:: Make sure to create the ``pom.xml`` file for Maven as described in :ref:`one of the preparation steps <maven_file>`.
+      3. In Java, create a ``pom.xml`` file to contain information about the project and configuration details used by Maven to build it:
 
-      .. code-block:: console
+         .. toggle-header::
+           :header: ``pom.xml`` **Show/Hide**
 
-         $ mvn install
-         $ java -jar ./target/insolar-java-example-1.0-SNAPSHOT-jar-with-dependencies.jar
+           .. code-block:: xml
+              :linenos:
+
+              <?xml version="1.0" encoding="UTF-8"?>
+              <project xmlns="http://maven.apache.org/POM/4.0.0"
+                       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                       xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+                  <modelVersion>4.0.0</modelVersion>
+
+                  <groupId>requester</groupId>
+                  <artifactId>requester-java-example</artifactId>
+                  <version>1.0-SNAPSHOT</version>
+
+                  <properties>
+                      <java.version>11</java.version>
+                  </properties>
+
+                  <dependencies>
+                      <dependency>
+                          <groupId>org.bouncycastle</groupId>
+                          <artifactId>bcprov-jdk15on</artifactId>
+                          <version>1.60</version>
+                      </dependency>
+                      <dependency>
+                          <groupId>org.bouncycastle</groupId>
+                          <artifactId>bcpkix-jdk15on</artifactId>
+                          <version>1.51</version>
+                      </dependency>
+                      <dependency>
+                          <groupId>org.json</groupId>
+                          <artifactId>json</artifactId>
+                          <version>20180813</version>
+                      </dependency>
+                      <dependency>
+                          <groupId>com.google.code.gson</groupId>
+                          <artifactId>gson</artifactId>
+                          <version>2.8.5</version>
+                      </dependency>
+                  </dependencies>
+                  
+                  <build>
+                      <plugins>
+                          <plugin>
+                              <groupId>org.apache.maven.plugins</groupId>
+                              <artifactId>maven-compiler-plugin</artifactId>
+                              <version>3.8.0</version>
+                              <configuration>
+                                  <release>11</release>
+                              </configuration>
+                          </plugin>
+
+                          <plugin>
+                              <groupId>org.apache.maven.plugins</groupId>
+                              <artifactId>maven-assembly-plugin</artifactId>
+                              <executions>
+                                  <execution>
+                                      <phase>package</phase>
+                                      <goals>
+                                          <goal>single</goal>
+                                      </goals>
+                                      <configuration>
+                                          <archive>
+                                              <manifest>
+                                                  <mainClass>
+                                                      requester.Main
+                                                  </mainClass>
+                                              </manifest>
+                                          </archive>
+                                          <descriptorRefs>
+                                              <descriptorRef>jar-with-dependencies</descriptorRef>
+                                          </descriptorRefs>
+                                      </configuration>
+                                  </execution>
+                              </executions>
+                          </plugin>
+
+                      </plugins>
+                  </build>
+                  
+              </project>
+
+      4. Install and run:
+
+         .. code-block:: console
+
+            $ mvn install
+            $ java -jar ./target/insolar-java-example-1.0-SNAPSHOT-jar-with-dependencies.jar
 
 .. _Summary:
 
 Summary
 -------
 
-Congratulations! You have just developed a requester capable of forming signed requests to interact with the Insolar's API.
+Congratulations! You have just developed a requester capable of forming signed requests to interact with the Insolar API.
 
 Build upon it:
 
-#. Create structures for other requests in accordance with the Insolar's API specification.
+#. Create structures for other requests in accordance with the Insolar API specification.
 #. Export the getter and sender functions to use them in other packages.
 
 .. _requester_example:
@@ -1159,14 +1201,14 @@ Complete Requester Code Examples
 
 Below are the complete requester code examples in both Golang and Java. Click the links to show or hide them.
 
-.. attention:: To be able to send transfer requests, put the reference to the recipient's member into the ``ToMemberReference`` field value in the highlighted line.
+.. attention:: To be able to send transfer requests, in the highlighted line, replace the ``<recipient_member_reference>`` placeholder value with the reference to the recipient member.
 
 .. toggle-header::
    :header: Golang: ``Main.go`` file. **Show/Hide**
 
    .. code-block:: Go
       :linenos:
-      :emphasize-lines: 277
+      :emphasize-lines: 289
 
       package main
 
@@ -1201,9 +1243,9 @@ Below are the complete requester code examples in both Golang and Java. Click th
         R, S *big.Int
       }
 
-      // Set the endpoint URL for local deployment (is to be changed to a production URL):
+      // Set the endpoint URL for the testing environment:
       const (
-        url = "http://127.0.0.1:19101/api/"
+        url = "http://127.0.0.1:19101/api/rpc"
       )
 
       // Create and initialize an HTTP client for connection re-use:
@@ -1217,7 +1259,7 @@ Below are the complete requester code examples in both Golang and Java. Click th
       var id int = 1
       // The identifier is to be incremented for every request and each corresponding response will contain it.
 
-      // Declare a nested structure to form requests to Insolar's API in accordance with the specification.
+      // Declare a nested structure to form requests to Insolar API in accordance with the specification.
       // The Platform uses the basic JSON RPC 2.0 request structure:
       type requestBody struct {
         JSONRPC        string         `json:"jsonrpc"`
@@ -1251,7 +1293,7 @@ Below are the complete requester code examples in both Golang and Java. Click th
       }
 
       // Create a function to get a new seed for each signed request:
-      func getNewSeed() string {
+      func getNewSeed() (string, *http.Cookie) {
         // Form a request body for getSeed:
         getSeedReq := requestBody{
           JSONRPC: "2.0",
@@ -1268,16 +1310,25 @@ Below are the complete requester code examples in both Golang and Java. Click th
         }
 
         // Create a new HTTP request and send it:
-        seedReq, err := http.NewRequest("POST", url+"rpc", bytes.NewBuffer(jsonSeedReq))
+        seedReq, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonSeedReq))
         if err != nil {
           log.Fatalln(err)
         }
         seedReq.Header.Set("ContentType", "application/json")
+
+        // Perform the request:
         seedResponse, err := client.Do(seedReq)
         if err != nil {
           log.Fatalln(err)
         }
         defer seedReq.Body.Close()
+
+        // Retrieve the cookie to use it in the subsequent request:
+        var cookie *http.Cookie
+        cookies := seedResponse.Cookies()
+        if(len(cookies) > 0) {
+          cookie = cookies[0]
+        }
 
         // Receive the response body:
         seedRespBody, err := ioutil.ReadAll(seedResponse.Body)
@@ -1293,25 +1344,25 @@ Below are the complete requester code examples in both Golang and Java. Click th
         }
 
         // (Optional) Print the request and its response:
-        print := "POST to " + url+"call" +
-        "\nPayload: " + string(jsonSeedReq) +
-        "\nResponse status code: " +  strconv.Itoa(seedResponse.StatusCode) +
-        "\nResponse: " + string(seedRespBody) + "\n"
+        print := "POST to " + url +
+          "\nPayload: " + string(jsonSeedReq) +
+          "\nResponse status code: " +  strconv.Itoa(seedResponse.StatusCode) +
+          "\nResponse: " + string(seedRespBody) + "\n"
         fmt.Println(print)
 
-        // Retrieve and return the current seed:
-        return newSeed["result"].(map[string]interface{})["Seed"].(string)
+        // Retrieve and return the current seed and cookie:
+        return newSeed["result"].(map[string]interface{})["seed"].(string), cookie
       }
 
       // Create a function to send signed requests:
-      func sendSignedRequest(payload requestBody, privateKey *ecdsa.PrivateKey) map[string]interface{} {
+      func sendSignedRequest(payload requestBody, privateKey *ecdsa.PrivateKey, cookie *http.Cookie) map[string]interface{} {
         // Marshal the payload into JSON:
         jsonPayload, err := json.Marshal(payload)
         if err != nil {
           log.Fatalln(err)
         }
 
-          // Take a SHA-256 hash of the payload's bytes:
+        // Take a SHA-256 hash of the payload's bytes:
         hash := sha256.Sum256(jsonPayload)
 
         // Sign the hash with the private key:
@@ -1335,7 +1386,7 @@ Below are the complete requester code examples in both Golang and Java. Click th
         signature64 := base64.StdEncoding.EncodeToString(signature)
 
         // Create a new request and set its headers:
-        request, err := http.NewRequest("POST", url+"call", bytes.NewBuffer(jsonPayload))
+        request, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonPayload))
         if err != nil {
           log.Fatalln(err)
         }
@@ -1346,6 +1397,9 @@ Below are the complete requester code examples in both Golang and Java. Click th
 
         // Put the signature string into the HTTP Signature header:
         request.Header.Set("Signature", "keyId=\"public-key\", algorithm=\"ecdsa\", headers=\"digest\", signature="+signature64)
+
+        // Set the cookie to route the contract request to the node that generated the seed:
+        request.AddCookie(cookie)
 
         // Send the signed request:
         response, err := client.Do(request)
@@ -1368,10 +1422,10 @@ Below are the complete requester code examples in both Golang and Java. Click th
         }
 
         // (Optional) Print the request and its response:
-        print := "POST to " + url+"call" +
-        "\nPayload: " + string(jsonPayload) +
-        "\nResponse status code: " + strconv.Itoa(response.StatusCode) +
-        "\nResponse: " + string(responseBody) + "\n"
+        print := "POST to " + url +
+          "\nPayload: " + string(jsonPayload) +
+          "\nResponse status code: " + strconv.Itoa(response.StatusCode) +
+          "\nResponse: " + string(responseBody) + "\n"
         fmt.Println(print)
 
         // Return the response:
@@ -1402,19 +1456,19 @@ Below are the complete requester code examples in both Golang and Java. Click th
         // The private key is required to sign requests.
         // Make sure to put into a file to save it in some secure place later:
         file, err := os.Create("private.pem")
-          if err != nil {
-              fmt.Println(err)
-              return
-          }
-          file.WriteString(string(pemPrivateKey))
-          file.Close()
+        if err != nil {
+          fmt.Println(err)
+          return
+        }
+        file.WriteString(string(pemPrivateKey))
+        file.Close()
 
-        // Get a seed to form the request:
-        seed := getNewSeed()
-          // Form a request body for member.create:
+        // Get a seed and cookie to form the request:
+        seed, cookie := getNewSeed()
+        // Form a request body for member.create:
         createMemberReq := requestBody{
           JSONRPC: "2.0",
-          Method:  "api.call",
+          Method:  "contract.call",
           ID:      id,
           Params:params {
             Seed: seed,
@@ -1425,28 +1479,28 @@ Below are the complete requester code examples in both Golang and Java. Click th
         // Increment the JSON RPC 2.0 request identifier for future requests:
         id++
 
-        // Send the signed member.create request:
-        newMember := sendSignedRequest(createMemberReq, privateKey)
+        // Send the signed member.create request and pass the cookie:
+        newMember := sendSignedRequest(createMemberReq, privateKey, cookie)
 
         // Put the reference to your new member into a variable to send transfer requests:
         memberReference := newMember["result"].(map[string]interface{})["callResult"].(map[string]interface{})["reference"].(string)
         fmt.Println("Member reference is " + memberReference)
 
-        // Get a new seed to form a transfer request:
-        seed = getNewSeed()
+        // Get a new seed and cookie to form a transfer request:
+        seed, cookie = getNewSeed()
         // Form a request body for transfer:
         transferReq := requestBody{
           JSONRPC: "2.0",
-          Method:  "api.call",
+          Method:  "contract.call",
           ID:      id,
           Params:paramsWithReference{ params:params{
-              Seed: seed,
-              CallSite: "member.transfer",
-              CallParams:transferCallParams {
-                Amount: "100",
-                ToMemberReference: "<reference_to_the_recipient_member>",
+            Seed: seed,
+            CallSite: "member.transfer",
+            CallParams:transferCallParams {
+              Amount: "100",
+              ToMemberReference: "<recipient_member_reference>",
               },
-              PublicKey: string(pemPublicKey),
+            PublicKey: string(pemPublicKey),
             },
             Reference: string(memberReference),
           },
@@ -1454,8 +1508,8 @@ Below are the complete requester code examples in both Golang and Java. Click th
         // Increment the id for future requests:
         id++
 
-        // Send the signed transfer request:
-        newTransfer := sendSignedRequest(transferReq, privateKey)
+        // Send the signed transfer request and pass the cookie:
+        newTransfer := sendSignedRequest(transferReq, privateKey, cookie)
         fee := newTransfer["result"].(map[string]interface{})["callResult"].(map[string]interface{})["fee"].(string)
 
         // (Optional) Print out the fee.
@@ -1469,7 +1523,7 @@ Below are the complete requester code examples in both Golang and Java. Click th
 
    .. code-block:: Java
       :linenos:
-      :emphasize-lines: 294
+      :emphasize-lines: 321
 
       package requester;
 
@@ -1488,6 +1542,7 @@ Below are the complete requester code examples in both Golang and Java. Click th
       // - Basic cryptography.
       import java.security.*;
       import java.security.spec.ECGenParameterSpec;
+
       import org.bouncycastle.asn1.*;
       import org.bouncycastle.openssl.jcajce.JcaPEMWriter;
       // - Basic encoding capabilities.
@@ -1498,8 +1553,8 @@ Below are the complete requester code examples in both Golang and Java. Click th
       // Declare a main class to wrap all the required functionality:
       public class Main {
 
-          // Set the endpoint URL for local deployment (is to be changed to a production URL):
-          private static final String API_URL = "http://localhost:19101/api";
+          // Set the endpoint URL for the testing environment:
+          private static final String API_URL = "http://127.0.0.1:19101/api/rpc";
 
           // Create and initialize an HTTP client for connection re-use:
           private static final HttpClient client = HttpClient.newBuilder().build();
@@ -1511,7 +1566,7 @@ Below are the complete requester code examples in both Golang and Java. Click th
           // Declare a class to build a request:
           public static class Schema {
 
-              // Declare a class to form requests to Insolar's API in accordance with the specification.
+              // Declare a class to form requests to Insolar API in accordance with the specification.
               // The Platform uses the basic JSON RPC 2.0 request structure:
               public static class requestBody {
                   @SerializedName("jsonrpc")
@@ -1602,22 +1657,41 @@ Below are the complete requester code examples in both Golang and Java. Click th
               }
           }
 
-          // Create a function to get a new seed for each signed request:
-          private static String getNewSeed() throws Exception {
+          // Create a class for the seed getter's return values (seed and cookie):
+          public static class Pair {
+              private String seed;
+              private String cookie;
 
+              public Pair(String seed, String cookie) {
+                  this.seed = seed;
+                  this.cookie = cookie;
+              }
+
+              public String getSeed() {
+                  return seed;
+              }
+
+              public String getCookie() {
+                  return cookie;
+              }
+          }
+
+          // Create a function to get a new seed for each signed request:
+          private static Pair getNewSeed() throws Exception {
               // Form a request body for getSeed and format it into JSON:
               String seedRequest = new Schema.requestBody().withMethod("node.getSeed").withID(id).toJson();
               // Increment the id for future requests:
               id++;
 
               // Create a new HTTP request and send it:
-              URL url = new URL(API_URL.concat("/rpc"));
+              URL url = new URL(API_URL);
               HttpRequest request = HttpRequest.newBuilder()
                       .POST(HttpRequest.BodyPublishers.ofString(seedRequest))
                       .header("Content-Type", "application/json; utf-8")
                       .uri(url.toURI())
                       .build();
               HttpResponse<String> send = client.send(request, HttpResponse.BodyHandlers.ofString());
+
               assert send.statusCode() == 200;
 
               // Receive the response body:
@@ -1634,12 +1708,14 @@ Below are the complete requester code examples in both Golang and Java. Click th
                       .toString();
               System.out.println(req);
 
-              // Retrieve and return the current seed:
-              return new JSONObject(response).getJSONObject("result").getString("Seed");
+              // Retrieve and return the current seed and cookie:
+              String seed =  new JSONObject(response).getJSONObject("result").getString("seed");
+              String cookie = send.headers().firstValue("Set-Cookie").orElse(null);
+              return new Pair(seed, cookie);
           }
 
           // Create a function to send signed requests:
-          private static JSONObject sendSignedRequest(String requestBody, PrivateKey privateKey) throws Exception {
+          private static JSONObject sendSignedRequest(String requestBody, PrivateKey privateKey, String cookie) throws Exception {
 
               // Take a SHA-256 hash of the payload's bytes:
               byte[] payload = requestBody.getBytes("UTF-8");
@@ -1674,13 +1750,14 @@ Below are the complete requester code examples in both Golang and Java. Click th
               // Put the signature string into the HTTP Signature header:
               String signatureHeader = "keyId=\"member-pub-key\", algorithm=\"ecdsa\", headers=\"digest\", signature=" + signature64;
 
-              // Create a new request and send it:
-              URL url = new URL(API_URL.concat("/call"));
+              // Create a new request, pass the cookie to route it to the node that generated the seed, and send it:
+              URL url = new URL(API_URL);
               HttpRequest request = HttpRequest.newBuilder()
                       .POST(HttpRequest.BodyPublishers.ofString(requestBody))
                       .header("Content-Type", "application/json; utf-8")
                       .header("Digest", digestHeader)
                       .header("Signature", signatureHeader)
+                      .header("Cookie", cookie)
                       .uri(url.toURI())
                       .build();
               HttpResponse<String> send = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -1734,8 +1811,10 @@ Below are the complete requester code examples in both Golang and Java. Click th
                   out.print(pem);
               }
 
-              // Get a seed to form a request:
-              String seed = getNewSeed();
+              // Get a seed and cookie to form a request:
+              Pair seedAndCookie = getNewSeed();
+              String seed = seedAndCookie.getSeed();
+              String cookie = seedAndCookie.getCookie();
               // Form a request body for member.create:
               Schema.Params memberParams = new Schema.Params();
               memberParams.setSeed(seed);
@@ -1743,13 +1822,13 @@ Below are the complete requester code examples in both Golang and Java. Click th
               memberParams.setPublicKey(publicKey);
 
               // Form a JSON payload:
-              String createMemberReq = new Schema.requestBody().withMethod("api.call").withParams(memberParams).withID(id).toJson();
+              String createMemberReq = new Schema.requestBody().withMethod("contract.call").withParams(memberParams).withID(id).toJson();
 
               // Increment the JSON RPC 2.0 request identifier for future requests:
               id++;
 
-              // Send the signed member.create request:
-              JSONObject newMember = sendSignedRequest(createMemberReq, keyPair.getPrivate());
+              // Send the signed member.create request and pass the cookie:
+              JSONObject newMember = sendSignedRequest(createMemberReq, keyPair.getPrivate(), cookie);
               assert newMember.isNull("error");
 
               // Put the reference to your new member into a variable to send subsequent transfer requests:
@@ -1757,24 +1836,26 @@ Below are the complete requester code examples in both Golang and Java. Click th
               System.out.println("Member reference is " + memberReference);
 
               // Get a new seed to form a transfer request:
-              seed = getNewSeed();
+              seedAndCookie = getNewSeed();
+              seed = seedAndCookie.getSeed();
+              cookie = seedAndCookie.getCookie();
 
               // Form a request body for transfer:
               Schema.Params transferParams = new Schema.Params();
               transferParams.setSeed(seed);
               transferParams.setCallSite("member.transfer");
               transferParams.setPublicKey(publicKey);
-              transferParams.setCallParams(new Schema.TransferCallParams("100", "<reference_to_the_recipient_member>"));
+              transferParams.setCallParams(new Schema.TransferCallParams("100", "<recipient_member_reference>"));
               transferParams.setReference(memberReference);
 
               // Form a JSON payload:
-              String transferReq = new Schema.requestBody().withMethod("api.call").withParams(transferParams).withID(id).toJson();
+              String transferReq = new Schema.requestBody().withMethod("contract.call").withParams(transferParams).withID(id).toJson();
 
               // Increment the id for future requests:
               id++;
 
               // Send the signed transfer request:
-              JSONObject newTransfer = sendSignedRequest(transferReq, keyPair.getPrivate());
+              JSONObject newTransfer = sendSignedRequest(transferReq, keyPair.getPrivate(), cookie);
               assert newTransfer.isNull("error");
               String fee = newTransfer.getJSONObject("result").getJSONObject("callResult").getString("fee");
 
@@ -1782,6 +1863,5 @@ Below are the complete requester code examples in both Golang and Java. Click th
               System.out.println("Fee is " + fee);
           }
       }
-
 
 |
