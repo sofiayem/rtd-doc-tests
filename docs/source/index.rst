@@ -4,6 +4,8 @@
 Insolar Documentation
 =====================
 
+.. image:: https://insolar.io/st/github-readme-banner.png
+
 Welcome to Insolar documentation.
 
 Insolar Platform is the most secure, scalable, and comprehensive business-ready blockchain toolkit in the world. Insolar’s goal is to give businesses access to features and services that enable them to launch new decentralized applications quickly and easily. Whether a minimum viable product or full-scale production software, Insolar builds and integrates applications for your enterprise's existing systems.
