@@ -156,6 +156,6 @@ As mentioned previously, Insolar focuses its research & development in the three
 * Uses domains in the layer above to allow for hybrid private/public networks with complex permissioning schemes.
 * Offers on-demand blockchain-as-a-service solutions for enterprises, thus implementing the next-to-top layer.
 
-With all the layers except the top one taken care of, enterprises get the most easy-to-use blockchain solution to automate their intra- and inter-business relations.
+To summarize: Insolar takes care of all the layers except the top one, so enterprises get the most easy-to-use blockchain solution to automate their intra- and inter-business relations.
 
 To continue the deep dive into Insolar technologies, take a closer look at its :ref:`architecture <architecture>`.
