@@ -108,7 +108,7 @@ On TestNet 1.1:
 * Only computational (virtual) nodes are available to external participants. Data storage is provided by Insolar nodes.
 * All discovery nodes are hosted by Insolar. Other nodes use them to reconnect to the network.
 * In the unlikely event of short-term storage (light material) nodes having to reconnect, multiple errors may occur for a few pulses.
-* Only one long-term (heavy material) node and one pulsar are deployed. If either of the nodes is missing, the network will go down but, upon the node's restart, will recover.
+* Only one long-term (heavy material) node and one pulsar are deployed. If either of the nodes is missing, the network will go down but, upon the node restart, will recover.
 * Storage node crash may lead to data loss.
 * Under certain conditions, the node’s process (``insolard`` daemon) may exit and its Docker container will restart it automatically. Insolar may also ask node holders for assistance with a manual restart.
 * Nodes joining the network produce errors when other nodes are leaving the network.
@@ -124,7 +124,7 @@ On TestNet 1.1:
 **Performance**
 
 * A simplistic rate limiter is implemented for light material nodes, so they reject incoming requests when the number of pending requests reaches a certain limit. This results in an exponential backoff on our benchmark tool -- the retry interval increases exponentially.
-* The rate limiter does not consider the request's origin. So, when a user puts an excessive load on the network, other users may suffer.
+* The rate limiter does not consider the request origin. So, when a user puts an excessive load on the network, other users may suffer.
 
 **Application level**
 
@@ -141,13 +141,13 @@ To connect to the Insolar test network, do the following:
 
 #. Install `Docker and Docker Compose <https://docs.docker.com/v17.12/install/>`_ and run the Docker daemon.
 
-#. Download the Insolar's ``insolar-node-<version>.tar.gz`` archive from the `latest release <https://github.com/insolar/insolar/releases>`_. You can find it under the :guilabel:`Assets` drop-down list.
+#. Download the Insolar ``insolar-node-<version>.tar.gz`` archive from the `latest release <https://github.com/insolar/insolar/releases>`_. You can find it under the :guilabel:`Assets` drop-down list.
 
 #. Unpack the archive on your server. A good place is under the ``/opt/insolar`` directory.
 
 #. Go to the unpacked directory, open the ``docker-compose.yml`` file in a text editor, and insert your server's public IP address to the ``INSOLARD_TRANSPORT_FIXED_ADDRESS`` field.
 
-#. Acquire ``cert.json`` and ``keys.json`` files from Insolar. You can ask for them in our `Telegram developer's chat <https://t.me/InsolarTech>`_.
+#. Acquire ``cert.json`` and ``keys.json`` files from Insolar. You can ask for them in our `Telegram developer chat <https://t.me/InsolarTech>`_.
 
    Put the files to the ``configs`` directory.
 
@@ -155,7 +155,7 @@ To connect to the Insolar test network, do the following:
 
 Enjoy being a part of the Insolar Network!
 
-.. note:: The Insolar's API is under development and not yet finalized. Please, await its first release.
+.. note:: The Insolar API is under development and not yet finalized. Please, await its first release.
 
 In addition to the Insolar node, the Docker Compose starts Kibana and Grafana services to take care of :ref:`logging and monitoring <logs_and_monitor>`.
 

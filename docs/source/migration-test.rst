@@ -235,7 +235,7 @@ To migrate the test INS tokens and swap them to XNS coins:
    Keeping the file locally allows easier access from the browser on the device you are using.
    To access your wallet from another device, download the file and move it, for example, via a USB drive.
 
-#. Click :guilabel:`DOWNLOAD` to save the keystore file or click :guilabel:`SAVE LOCALLY` to save the file to your browser's local storage.
+#. Click :guilabel:`DOWNLOAD` to save the keystore file or click :guilabel:`SAVE LOCALLY` to save the file to your browser local storage.
 
    Later, you can log in using one of the following:
 
