@@ -7,6 +7,8 @@ This test scenario walks you though the process of acquiring test INS tokens and
 
 During the testing period of the Insolar MainNet, all operations will be performed with test XNS coins (native for MainNet).
 
+.. warning:: Do not send INS from the real Ethereum network to Insolar MainNet during the testing period.
+
 .. _needs_for_migration_test:
 
 What You Will Need

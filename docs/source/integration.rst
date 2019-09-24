@@ -4,14 +4,10 @@
 Integrating with Insolar
 ========================
 
-.. note::
+To set up or join an Insolar network, check the :ref:`hardware requirements <sys_requirements>` and:
 
-   Upon the MainNet release, this section will be expanded to include the appropriate integration instructions.
-
-To join or set up an Insolar network, check the :ref:`hardware requirements <sys_requirements>` and:
-
+* :ref:`Set up a network <setting_up_devnet>` locally for development and test purposes. The local setup is done on one computer, and the "network nodes" are simply services listening to different ports.
 * :ref:`Connect to TestNet 1.1 <connecting_to_testnet>`. Participation in this network is permissioned, with participants invited by the Insolar Core Development Team based on their ability to fulfill the respective SLA.
-* :ref:`Set up a network <setting_up_devnet>` locally for development and test purposes. The local setup is done on one computer with no particular system requirements, and the 'network nodes' are simply services listening on different ports.
 
 .. _sys_requirements:
 
@@ -46,6 +42,47 @@ Preferable hardware requirements for virtual nodes on TestNet 1.1 are as follows
 +-----------+-------+------------+
 
 All servers wishing to join the Insolar test network must have **public IP addresses**.
+
+.. _setting_up_devnet:
+
+Setting Up Network Locally
+--------------------------
+
+To set up the network locally, do the following:
+
+#. Since Insolar is written in Go, install its `programming tools <https://golang.org/doc/install#install>`_.
+
+   .. note:: Make sure the ``$GOPATH`` environment variable is set. 
+
+#. Download the Insolar package:
+
+   .. code-block:: bash
+
+      go get github.com/insolar/insolar
+
+#. Go to the package directory:
+
+   .. code-block:: bash
+
+      cd $GOPATH/src/github.com/insolar/insolar
+
+#. Install dependencies and build binaries: simply run ``make``.
+
+#. Take a look at the ``scripts/insolard/bootstrap_template.yaml`` file. Here, you can find a list of nodes to be launched. In local setup, the "nodes" are simply services listening to different ports.
+
+   To add more nodes to the "network", uncomment some.
+
+#. Run the launcher:
+
+   .. code-block:: bash
+
+      scripts/insolard/launchnet.sh -g
+
+   The launcher generates bootstrap data, starts the nodes and a pulse watcher, and logs events to ``.artifacts/launchnet/logs``.
+
+When the pulse watcher says ``INSOLAR STATE: READY``, the network is up and has achieved consensus. You can start running test scripts and `benchmarks <https://github.com/insolar/insolar/blob/master/cmd/benchmark/README.md>`_.
+
+Also, you can manually bring up :ref:`logging and monitoring <logs_and_monitor>` by running ``scripts/monitor.sh``.
 
 .. _connecting_to_testnet:
 
@@ -145,47 +182,6 @@ Insolar uses the following ports:
 +--------------+----------+-----------------------------------------------------+
 | 8080         | TCP      | Prometheus metrics endpoint.                        |
 +--------------+----------+-----------------------------------------------------+
-
-.. _setting_up_devnet:
-
-Setting Up Network Locally
---------------------------
-
-To set up the network locally, do the following:
-
-#. Since Insolar is written in Go, install its `programming tools <https://golang.org/doc/install#install>`_.
-
-   .. note:: Make sure the ``$GOPATH`` environment variable is set. 
-
-#. Download the Insolar package:
-
-   .. code-block:: bash
-
-      go get github.com/insolar/insolar
-
-#. Go to the package directory:
-
-   .. code-block:: bash
-
-      cd $GOPATH/src/github.com/insolar/insolar
-
-#. Install dependencies and build binaries: simply run ``make``.
-
-#. Take a look at the ``scripts/insolard/bootstrap_template.yaml`` file. Here, you can find a list of nodes to be launched. In local setup, the 'nodes' are simply services listening on different ports.
-
-   To add more nodes to the 'network', uncomment some.
-
-#. Run the launcher:
-
-   .. code-block:: bash
-
-      scripts/insolard/launchnet.sh -g
-
-   The launcher generates bootstrap data, starts the nodes and a pulse watcher, and logs events to ``.artifacts/launchnet/logs``.
-
-When the pulse watcher says ``INSOLAR STATE: READY``, the network is up and has achieved consensus. You can start running test scripts and `benchmarks <https://github.com/insolar/insolar/blob/master/cmd/benchmark/README.md>`_.
-
-Also, you can manually bring up :ref:`logging and monitoring <logs_and_monitor>` by running ``scripts/monitor.sh``.
 
 .. _logs_and_monitor:
 
