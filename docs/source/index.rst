@@ -23,6 +23,11 @@ To test token migration using test tokens, go through the :ref:`test scenario <m
 
 To build a requester to Insolar API, complete the :ref:`tutorial <building_requester>`.
 
+.. _toc:
+
+Table of Contents
+=================
+
 .. toctree::
    :maxdepth: 2
    :caption: Overview
