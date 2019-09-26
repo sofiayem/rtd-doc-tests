@@ -13,9 +13,9 @@ To understand Insolar, let's zoom out and take a look at the big picture.
 The Big Picture
 ---------------
 
-Every enterprise (actor), however big and reliable, is having a hard time:
+When automating complex business relations with counterparties and consumers, every enterprise (actor), however big and reliable, is having a hard time:
 
-* convincing its counterparties that they (the actor) should hold a centralized database and define the rules of processing;
+* convincing the counterparties that they (the actor) should hold a centralized database and define the rules of processing;
 * maintaining a centralized database and being responsible for all business processes and their automation.
 
 These pains go away with a blockchain or, more strictly, DLT: it effectively shifts away those responsibilities from one single actor to a decentralized setup while ensuring the consistency and behavior of both the infrastructure and all actors involved, trusted or malicious. The problem with most DLTs is that they do not keep the needs of enterprises in mind from the very beginning. Conversely, Insolar's goal is to make blockchain easy-to-use for any enterprise, big or small.
@@ -29,9 +29,9 @@ Below is an illustration of the layered architecture that Insolar introduces to 
 
 The architecture is split into four layers:
 
-* At the top layer are distributed applications (:ref:`contracts <contracts>`) owned by and tailored for companies who serve other companies.
-* The next layer represents business services and templates for business applications provided by vendors.
-* At the third layer are :ref:`clouds <fed_of_clouds>` and :ref:`domains <domains>`. Cloud infrastructure can be public and offered by governments or even communities as a public good (crowd-sourced computational resources) and domains serve as governance tools.
+* At the top layer are distributed business applications owned by and tailored for companies who serve other companies. Everything is a :ref:`smart contract <contracts>` in the Insolar network and the contracts are the gears that keep the applications running.
+* The next layer represents business services and templates for business applications provided by vendors. Templates are the application building blocks.
+* At the third layer are :ref:`clouds <fed_of_clouds>` and :ref:`domains <domains>`. Cloud infrastructure can be public and offered by governments or even communities as a public good (crowd-sourced computational resources). Domains serve as governance tools. Starting from this layer, the abstraction complexity grows progressively right up to the top layer.
 * At the bottom layer are providers of :ref:`hardware capacities <globulas>` organized into national and/or industrial compute & storage resources.
 
 Insolar focuses its research & development in the three bottom layers making the top one easy to use for enterprises wishing to integrate with the Insolar blockchain.
@@ -47,8 +47,8 @@ Broadly, existing blockchains and DLTs offer two major opposing approaches to pr
 
 .. _two_approaches:
 
-* **Approach 1**: Data is processed by “miners” and recorded by "full" nodes. In this approach, the said data is available to all nodes, and decentralization here comes at the cost of low network throughput and high computation expenses.
-* **Approach 2**: Data is processed in a centralized way involving only a subset of nodes. This approach offers higher throughput rates but involves the network transferring potentially large objects and raises questions regarding centralization.
+* **Approach 1**: Data is processed by “miners” and recorded by "full" nodes. In this approach, a common ledger stores the said data and the ledger is maintained by all nodes. Decentralization here comes at the cost of low network throughput and high computation expenses.
+* **Approach 2**: Data is processed in a centralized way involving only a subset of nodes. This approach offers higher throughput rates but requires the network to transfer potentially large objects and raises questions regarding centralization.
 
 Insolar extends the latter approach by introducing the benefits of the former via its omni-scaling feature.
 
@@ -60,9 +60,7 @@ Omni-Scaling
 Omni-scaling is an integral feature that utilizes the following aspects:
 
 * :ref:`Multichain organization of storage <objects>`.
-* :ref:`Multi-role model of nodes <multi_role_nodes>`. 
-
-  The model divides the workload between subsets of nodes, thus minimizing the amount of information the nodes have to exchange. Nodes can be:
+* :ref:`Multi-role model of nodes <multi_role_nodes>`. The model divides the workload between subsets of nodes, thus minimizing the amount of information the nodes have to exchange. Nodes can be:
 
   * *virtual executors* that process transactions,
   * *virtual validators* that validate them,
@@ -70,9 +68,10 @@ Omni-scaling is an integral feature that utilizes the following aspects:
   * *light material validators* that validate storage operations,
   * *heavy material* nodes that serve as cold storage, while all the light material ones cache hot data.
 
-* Innovative approach to :ref:`distributing workloads <network_consensus>` across the network.
+* Innovative approach to :ref:`distributing workloads <network_consensus>` across the network. To decentralize what is otherwise a centralized processing approach:
 
-  To decentralize what is otherwise a centralized processing approach, the network consensus works in cycles and uses randomization (entropy) to select (not elect) the nodes to perform the aforementioned roles for each processing cycle.
+  * the network works in cycles;
+  * uses randomization (entropy) to select (not elect) the nodes to perform the aforementioned roles *for each object* in the ledger *in every processing cycle*.
 
 Omni-scaling spans both processing and persistence parts of the :ref:`bottom layer <big_pic>`. Let's take a closer look at both parts.
 
@@ -85,10 +84,10 @@ Insolar lives on the principle of actions **executed by one, validated by many**
 
 The network randomizes (:term:`using pulses <pulse>`) the selection of both:
 
-* an executor for each processing cycle;
-* and, in the next cycle, a set of validators for each transaction to be processed.
+* an executor for *each object* in *every processing cycle*;
+* and, in the next cycle, a set of validators for each processed object.
 
-The :ref:`consensus <network_consensus>` protocol ensures that no :ref:`executor can validate <virtual_execution_validation>` its own output, and no node can predict the nature of its workload during the next cycle. If a transaction takes longer than one cycle, the executor node has to receive a permission to continue execution (from the would-be executor of the next cycle). The amount of validators can be tuned according to the perceived value at risk of the transaction to process.
+The processing mechanism ensures that no :ref:`executor can validate <virtual_execution_validation>` its own output, and no node can predict the nature of its workload during the next cycle. If a transaction takes longer than one cycle, the executor node has to receive a permission to continue execution (from the would-be executor of the next cycle). The amount of validators can be tuned according to the perceived value at risk of the transaction to process.
 
 Both executors & validators are :ref:`virtual nodes <virtual>` with :ref:`dynamic roles <dynamic_roles>`, and together they make up the processing part of the :ref:`bottom layer <big_pic>`.
 
@@ -141,7 +140,8 @@ Technically, a :term:`domain <domain>` is a special smart contract that defines 
 * business logic, e.g., trade finance; 
 * access rules — permissioned or permissionless; 
 * location (e.g., geographical) in which smart contracts can be executed and their results stored;
-* consensus rules for validation to configure processing costs (number of validation nodes and/or algorithms) versus value at risk; etc.
+* consensus rules for validation to configure processing costs (number of validation nodes and/or algorithms) versus value at risk;
+* etc.
 
 Since Insolar's code is open-sourced, it can be deployed and used publicly in a permissionless setup. But all the enterprises require a private setup and permissioned access even on already deployed public networks. This is a major obstacle on the path of blockchain adoption. Insolar will overcome this problem by using carefully implemented domains as they offer enough flexibility to allow the deployment of hybrid public/private networks with complex permissioning schemes.
 
@@ -150,12 +150,12 @@ Since Insolar's code is open-sourced, it can be deployed and used publicly in a 
 Summary
 -------
 
-As mentioned previously, Insolar focuses its research & development in the three bottom layers:
+Insolar focuses its research & development in the three bottom layers:
 
 * Provides near linear scalability in the bottom layer via the omni-scaling feature.
 * Uses domains in the layer above to allow for hybrid private/public networks with complex permissioning schemes.
 * Offers on-demand blockchain-as-a-service solutions for enterprises, thus implementing the next-to-top layer.
 
-To summarize: Insolar takes care of all the layers except the top one, so enterprises get the most easy-to-use blockchain solution to automate their intra- and inter-business relations.
+As a result, enterprises get the most easy-to-use blockchain solution to automate their intra- and inter-business relations.
 
 To continue the deep dive into Insolar technologies, take a closer look at its :ref:`architecture <architecture>`.
