@@ -274,6 +274,6 @@ To migrate the test INS tokens and swap them to XNS coins:
    .. image:: imgs/confirm-send-to-mig-addr.png
       :width: 300px
 
-   Once the transaction is processed by the Ropsten test network, your test XNS coins will appear in the Insolar Wallet.
+   Once the transaction is processed by the Ropsten test network, your test XNS coins will appear in the Insolar Wallet. The migration process might take some time.
 
 This concludes the migration test.
