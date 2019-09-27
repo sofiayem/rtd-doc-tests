@@ -37,6 +37,7 @@ extensions = [
 	'sphinxcontrib.plantuml',
 	'sphinx_copybutton',
 	'sphinxcontrib.contentui',
+	'sphinx_search.extension',
 ]
 
 plantuml_output_format = 'svg'
