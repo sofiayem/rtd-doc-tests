@@ -59,7 +59,7 @@ Omni-Scaling
 
 Omni-scaling is an integral feature that utilizes the following aspects:
 
-* :ref:`Multichain organization of storage <objects>`.
+* :ref:`Multichain organization of storage <objects>`. All smart contracts are objects stored as separate chains of records (:term:`lifelines <lifeline>`).
 * :ref:`Multi-role model of nodes <multi_role_nodes>`. The model divides the workload between subsets of nodes, thus minimizing the amount of information the nodes have to exchange. Nodes can be:
 
   * *virtual executors* that process transactions,
