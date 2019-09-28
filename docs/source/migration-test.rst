@@ -7,7 +7,7 @@ This test scenario walks you though the process of acquiring test INS tokens and
 
 During the testing period of the Insolar MainNet, all operations will be performed with test XNS coins (native for MainNet).
 
-.. warning:: Do not send INS from the real Ethereum network to Insolar MainNet during the testing period.
+.. warning:: Do not send INS tokens from the real Ethereum network to Insolar MainNet during the testing period.
 
 .. _needs_for_migration_test:
 
@@ -211,9 +211,12 @@ Migrating Test INS Tokens and Swapping Them to Test XNS Coins
 
 To migrate the test INS tokens and swap them to XNS coins:
 
-#. Create your Insolar Wallet.
+#. Create your Insolar Wallet. On the Insolar Wallet main page, click :guilabel:`CREATE A NEW WALLET`:
 
-   .. note:: Upon the MainNet release and the start of the testing period, an appropriate link we be pasted here.
+   .. image:: imgs/create-ins-wallet.png
+      :width: 600px
+
+   The **Wallet creation tutorial** will open. Read through it attentively.
 
    Upon creation, the Wallet takes care of security for you:
 
@@ -221,35 +224,77 @@ To migrate the test INS tokens and swap them to XNS coins:
    #. Encrypts the key with your password and puts it in a keystore file. You can use this file to access your wallet and authorize operations.
    #. Ensures that you make a record of the backup phrase. Using this phrase, you can restore the Wallet in case you lose the private key or the keystore file and your password.
 
-#. On the Insolar Wallet main page, click :guilabel:`CREATE A NEW WALLET`.
-#. Enter a new password, confirm it, agree to the "Term of Use", and click :guilabel:`NEXT`.
-#. Reveal the backup phrase, copy it, and click :guilabel:`Next`.
-#. Enter the requested words in the correct order and click :guilabel:`OPEN MY WALLET`.
-#. Wait for the Wallet validation to complete and all features to become available.
+   .. caution:: You are solely responsible for keeping your funds as no one else can recover your Wallet. Insolar does not store your credentials, encrypted or otherwise.
 
-   Once the Wallet is created, it will require you to save the keystore file either:
+#. On the **Create a new Wallet** page:
 
-   * In your browser’s local storage.
-   * By downloading it to your computer.
+   .. image:: imgs/ins-wallet-password.png
+      :width: 370px
 
-   Keeping the file locally allows easier access from the browser on the device you are using.
-   To access your wallet from another device, download the file and move it, for example, via a USB drive.
+   #. Enter a new password. It should be at least 8 characters long and contain a mix of numbers, uppercase, and lowercase letters.
+   #. Re-enter the password to confirm it.
+   #. Agree to the "Term of Use".
+   #. Allow anonymous data collection to improve the service.
+   #. Click :guilabel:`NEXT`.
 
-#. Click :guilabel:`DOWNLOAD` to save the keystore file or click :guilabel:`SAVE LOCALLY` to save the file to your browser local storage.
+#. On the next scren, click :guilabel:`REVEAL TEXT` to see the backup phrase:
+
+   .. image:: imgs/ins-reveal-phrase.png
+      :width: 450px
+
+   The secret backup phrase is a series of words that store all the information needed to recover Insolar Wallet. The backup phrase and private key are synonymous in function.
+
+   .. warning:: Never disclose your backup phrase (or private key).
+
+   .. tip::
+
+      Security tips:
+
+      * Store the backup phrase in a password manager.
+      * Write the phrase down on several pieces of paper and store them in different locations.
+      * Memorize the phrase.
+
+   Once you have secured the backup phrase, click :guilabel:`NEXT`.
+
+#. On the next screen, enter the requested words in the correct order and click :guilabel:`OPEN MY WALLET`:
+
+   .. image:: imgs/ins-word-order.png
+      :width: 350px
+
+#. Wait for the Wallet validation to complete and all features to become available:
+
+   .. image:: imgs/one-more-thing.png
+      :width: 400px
+
+#. Once the Wallet is created, receive congratulations from Insolar:
+
+   .. image:: imgs/ins-congrats.png
+      :width: 400px
+
+   And save the keystore file in one of the following ways:
+
+   * Click :guilabel:`SAVE LOCALLY` to save it to your browser’s local storage. Keeping the file locally allows easier access from the browser on the device you are using.
+   * Click :guilabel:`DOWNLOAD` to save it to your computer. In this case, you can move it to another device via, for example, a USB drive.
 
    Later, you can log in using one of the following:
 
-   * Your password and the keystore file.
+   * (Recommended) Your password and the keystore file.
    * Unencrypted private key.
 
    Either way, the Wallet does not store the private key. Instead, it uses the private key provided every time to authorize login and operations. While logged in, you can copy your unencrypted private key, but keep in mind, this is its most vulnerable form.
 
-#. In the Insolar Wallet, click the avatar icon |avatar-icon| in the upper right corner to open the menu.
+#. In the Insolar Wallet, click the avatar icon |avatar-icon| in the upper right corner to open the menu:
 
    .. |avatar-icon| image:: imgs/avatar-icon.png
       :width: 30px
 
-#. In the **Your Wallet** menu, click :guilabel:`Copy migration address` and return to the MetaMask wallet.
+   .. image:: imgs/right-menu.png
+      :width: 200px
+
+   In the menu, click :guilabel:`Copy migration address`.
+
+   After that, return to the MetaMask wallet.
+
 #. In the MetaMask wallet, open the :guilabel:`INS` tab and click :guilabel:`Send`:
 
    .. image:: imgs/meta-send-ins.png
@@ -274,6 +319,11 @@ To migrate the test INS tokens and swap them to XNS coins:
    .. image:: imgs/confirm-send-to-mig-addr.png
       :width: 300px
 
-   Once the transaction is processed by the Ropsten test network, your test XNS coins will appear in the Insolar Wallet. The migration process might take some time.
+   The migration process may take some time.
+
+#. Once the transaction is processed by the Ropsten test network, your test XNS coins will appear in the Insolar Wallet:
+
+   .. image:: imgs/ins-tokens-hold.png
+      :width: 300px
 
 This concludes the migration test.
