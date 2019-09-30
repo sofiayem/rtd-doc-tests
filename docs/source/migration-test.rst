@@ -237,7 +237,7 @@ To migrate the test INS tokens and swap them to XNS coins:
    #. Allow anonymous data collection to improve the service.
    #. Click :guilabel:`NEXT`.
 
-#. On the next scren, click :guilabel:`REVEAL TEXT` to see the backup phrase:
+#. On the next screen, click :guilabel:`REVEAL TEXT` to see the backup phrase:
 
    .. image:: https://github.com/insolar/doc-pics/raw/master/mig-test/ins-reveal-phrase.png
       :width: 450px
