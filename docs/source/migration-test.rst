@@ -55,28 +55,28 @@ To create and set up a MetaMask Ethereum wallet:
 #. Receive congratulations from MetaMask and click :guilabel:`All Done`. You will see the wallet's user interface.
 #. In the top right corner, select :guilabel:`Ropsten Test Network` from the drop-down list:
 
-   .. image:: imgs/selecting-ropsten.png
+   .. image:: https://github.com/insolar/doc-pics/raw/master/mig-test/selecting-ropsten.png
       :width: 700px
 
    |
 
 #. In the bottom left corner, click :guilabel:`Add Token`:
 
-   .. image:: imgs/add-token.png
+   .. image:: https://github.com/insolar/doc-pics/raw/master/mig-test/add-token.png
       :width: 700px
 
    |
 
 #. On the **Add Tokens** screen, open the :guilabel:`Custom Token` tab:
 
-   .. image:: imgs/custom-token.png
+   .. image:: https://github.com/insolar/doc-pics/raw/master/mig-test/custom-token.png
       :width: 300px
 
    |
 
 #. Copy the INS token contract address -- click the copy icon |copy-icon| in the right corner of the following code block:
 
-   .. |copy-icon| image:: imgs/copy-icon.png
+   .. |copy-icon| image:: https://github.com/insolar/doc-pics/raw/master/mig-test/copy-icon.png
       :width: 20px
 
    .. code-block::
@@ -85,19 +85,19 @@ To create and set up a MetaMask Ethereum wallet:
 
 #. In the :guilabel:`Token Contract Address` field, paste the copied INS token contract address:
 
-   .. image:: imgs/ins-token.png
+   .. image:: https://github.com/insolar/doc-pics/raw/master/mig-test/ins-token.png
       :width: 300px
 
    MetaMask will find the INS token symbol and decimals of precision for you. Click :guilabel:`Next`.
 
 #. On the next screen, click :guilabel:`Add Tokens`:
 
-   .. image:: imgs/add-ins.png
+   .. image:: https://github.com/insolar/doc-pics/raw/master/mig-test/add-ins.png
       :width: 300px
 
    With that, the MetaMask wallet is set up to operate the test ETH coins and INS tokens:
 
-   .. image:: imgs/wallet-setup.png
+   .. image:: https://github.com/insolar/doc-pics/raw/master/mig-test/wallet-setup.png
       :width: 700px
 
    |
@@ -111,38 +111,38 @@ To acquire, first, test ETH, then swap them to test INS tokens:
 
 #. In the MetaMask wallet, first, click the :guilabel:`ETH` tab, then :guilabel:`Deposit`.
 
-   .. image:: imgs/eth-deposit.png
+   .. image:: https://github.com/insolar/doc-pics/raw/master/mig-test/eth-deposit.png
       :width: 700px
 
    |
 
 #. In the **Deposit Ether** window, click :guilabel:`Get Ether` next to **Test Faucet**:
 
-   .. image:: imgs/get-eth-from-faucet.png
+   .. image:: https://github.com/insolar/doc-pics/raw/master/mig-test/get-eth-from-faucet.png
       :width: 700px
 
    This opens the `MetaMask Ether Faucet page <https://faucet.metamask.io/>`_.
 
 #. On the opened page, click :guilabel:`request 1 ether from faucet`:
 
-   .. image:: imgs/request-one-eth.png
+   .. image:: https://github.com/insolar/doc-pics/raw/master/mig-test/request-one-eth.png
       :width: 400px
 
    MetaMask will ask you to connect the request in the newly opened window. Click :guilabel:`Connect`:
 
-   .. image:: imgs/connect-request.png
+   .. image:: https://github.com/insolar/doc-pics/raw/master/mig-test/connect-request.png
       :width: 300px
 
    Once connected, you can click :guilabel:`request 1 ether from faucet` several times more (maximum 6). The corresponding transaction entries will appear below:
 
-   .. image:: imgs/test-eth-txes.png
+   .. image:: https://github.com/insolar/doc-pics/raw/master/mig-test/test-eth-txes.png
       :width: 450px
 
    Wait several seconds to let the transactions be processed by the test network and return to the MetaMask wallet.
 
 #. In the MetaMask wallet's **History**, the confirmed transactions will appear and your balance will be updated. Click :guilabel:`Send`:
 
-   .. image:: imgs/meta-balance.png
+   .. image:: https://github.com/insolar/doc-pics/raw/master/mig-test/meta-balance.png
       :width: 700px
 
    |
@@ -155,12 +155,12 @@ To acquire, first, test ETH, then swap them to test INS tokens:
 
 #. On the **Add Recipient** screen, paste the copied address to the search field:
 
-   .. image:: imgs/send-search-field.png
+   .. image:: https://github.com/insolar/doc-pics/raw/master/mig-test/send-search-field.png
       :width: 300px
 
    The MetaMask wallet will recognize the INS token contract and display the transfer details:
 
-   .. image:: imgs/meta-transfer-details.png
+   .. image:: https://github.com/insolar/doc-pics/raw/master/mig-test/meta-transfer-details.png
       :width: 300px
 
    |
@@ -169,14 +169,14 @@ To acquire, first, test ETH, then swap them to test INS tokens:
    
    However, setting the correct gas value is required. To set it, click :guilabel:`Advanced Options`:
 
-   .. image:: imgs/advanced-options.png
+   .. image:: https://github.com/insolar/doc-pics/raw/master/mig-test/advanced-options.png
       :width: 300px
 
    |
 
 #. On the **Customize Gas** screen, set the :guilabel:`Gas Limit` to ``80000`` (eighty thousand) and click :guilabel:`Save`:
 
-   .. image:: imgs/gas-limit.png
+   .. image:: https://github.com/insolar/doc-pics/raw/master/mig-test/gas-limit.png
       :width: 300px
 
    |
@@ -185,12 +185,12 @@ To acquire, first, test ETH, then swap them to test INS tokens:
 
 #. Back on the **Send ETH** screen, click :guilabel:`Next`:
 
-   .. image:: imgs/finally-send-eth.png
+   .. image:: https://github.com/insolar/doc-pics/raw/master/mig-test/finally-send-eth.png
       :width: 300px
 
    And, on the next screen, click :guilabel:`Confirm`:
 
-   .. image:: imgs/finally-confirm.png
+   .. image:: https://github.com/insolar/doc-pics/raw/master/mig-test/finally-confirm.png
       :width: 300px
 
    |
@@ -199,7 +199,7 @@ To acquire, first, test ETH, then swap them to test INS tokens:
 
    Once the corresponding transactions are confirmed, the MetaMask wallet is set up to operate test INS tokens:
 
-   .. image:: imgs/meta-wallet-setup.png
+   .. image:: https://github.com/insolar/doc-pics/raw/master/mig-test/meta-wallet-setup.png
       :width: 700px
 
 Next, migrate test INS token to the Insolar network. The migration will automatically swap the test INS tokens to test XNS coins.
@@ -213,7 +213,7 @@ To migrate the test INS tokens and swap them to XNS coins:
 
 #. Create your Insolar Wallet. On the Insolar Wallet main page, click :guilabel:`CREATE A NEW WALLET`:
 
-   .. image:: imgs/create-ins-wallet.png
+   .. image:: https://github.com/insolar/doc-pics/raw/master/mig-test/create-ins-wallet.png
       :width: 600px
 
    The **Wallet creation tutorial** will open. Read through it attentively.
@@ -228,7 +228,7 @@ To migrate the test INS tokens and swap them to XNS coins:
 
 #. On the **Create a new Wallet** page:
 
-   .. image:: imgs/ins-wallet-password.png
+   .. image:: https://github.com/insolar/doc-pics/raw/master/mig-test/ins-wallet-password.png
       :width: 370px
 
    #. Enter a new password. It should be at least 8 characters long and contain a mix of numbers, uppercase, and lowercase letters.
@@ -239,7 +239,7 @@ To migrate the test INS tokens and swap them to XNS coins:
 
 #. On the next scren, click :guilabel:`REVEAL TEXT` to see the backup phrase:
 
-   .. image:: imgs/ins-reveal-phrase.png
+   .. image:: https://github.com/insolar/doc-pics/raw/master/mig-test/ins-reveal-phrase.png
       :width: 450px
 
    The secret backup phrase is a series of words that store all the information needed to recover Insolar Wallet. The backup phrase and private key are synonymous in function.
@@ -258,17 +258,17 @@ To migrate the test INS tokens and swap them to XNS coins:
 
 #. On the next screen, enter the requested words in the correct order and click :guilabel:`OPEN MY WALLET`:
 
-   .. image:: imgs/ins-word-order.png
+   .. image:: https://github.com/insolar/doc-pics/raw/master/mig-test/ins-word-order.png
       :width: 350px
 
 #. Wait for the Wallet validation to complete and all features to become available:
 
-   .. image:: imgs/one-more-thing.png
+   .. image:: https://github.com/insolar/doc-pics/raw/master/mig-test/one-more-thing.png
       :width: 400px
 
 #. Once the Wallet is created, receive congratulations from Insolar:
 
-   .. image:: imgs/ins-congrats.png
+   .. image:: https://github.com/insolar/doc-pics/raw/master/mig-test/ins-congrats.png
       :width: 400px
 
    And save the keystore file in one of the following ways:
@@ -285,10 +285,10 @@ To migrate the test INS tokens and swap them to XNS coins:
 
 #. In the Insolar Wallet, click the avatar icon |avatar-icon| in the upper right corner to open the menu:
 
-   .. |avatar-icon| image:: imgs/avatar-icon.png
+   .. |avatar-icon| image:: https://github.com/insolar/doc-pics/raw/master/mig-test/avatar-icon.png
       :width: 30px
 
-   .. image:: imgs/right-menu.png
+   .. image:: https://github.com/insolar/doc-pics/raw/master/mig-test/right-menu.png
       :width: 200px
 
    In the menu, click :guilabel:`Copy migration address`.
@@ -297,33 +297,33 @@ To migrate the test INS tokens and swap them to XNS coins:
 
 #. In the MetaMask wallet, open the :guilabel:`INS` tab and click :guilabel:`Send`:
 
-   .. image:: imgs/meta-send-ins.png
+   .. image:: https://github.com/insolar/doc-pics/raw/master/mig-test/meta-send-ins.png
       :width: 700px
 
    |
 
 #. On the **Add Recipient** screen, paste the copied migration address to the search field:
 
-   .. image:: imgs/send-search-field.png
+   .. image:: https://github.com/insolar/doc-pics/raw/master/mig-test/send-search-field.png
       :width: 300px
 
    |
 
 #. On the **Send Tokens** screen, first, click :guilabel:`Max`, then :guilabel:`Next`:
 
-   .. image:: imgs/send-ins-to-mig-addr.png
+   .. image:: https://github.com/insolar/doc-pics/raw/master/mig-test/send-ins-to-mig-addr.png
       :width: 300px
 
    And :guilabel:`Confirm` the transaction:
 
-   .. image:: imgs/confirm-send-to-mig-addr.png
+   .. image:: https://github.com/insolar/doc-pics/raw/master/mig-test/confirm-send-to-mig-addr.png
       :width: 300px
 
    The migration process may take some time.
 
 #. Once the transaction is processed by the Ropsten test network, your test XNS coins will appear in the Insolar Wallet:
 
-   .. image:: imgs/ins-tokens-hold.png
+   .. image:: https://github.com/insolar/doc-pics/raw/master/mig-test/ins-tokens-hold.png
       :width: 300px
 
 This concludes the migration test.
