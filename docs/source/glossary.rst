@@ -85,3 +85,9 @@ Below is a list of terms (and their analogies) Insolar uses to designate its key
    Network
       Set of :term:`hosts <host>` sharing same security, reliability, and network performance profiles and able to directly exchange data under at least one transport protocol and at least one encryption standard supported by all hosts.
       In other words, all hosts within the same network are able to use P2P communications without violation of security and other policies.
+
+Additionally, check out the list of |plaform_features|.
+
+.. |plaform_features| raw:: html
+
+   <a href="https://insolar.io/platform" target="_blank">Plaform features</a>
