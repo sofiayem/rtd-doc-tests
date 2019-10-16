@@ -90,4 +90,4 @@ Additionally, check out the list of |plaform_features|.
 
 .. |plaform_features| raw:: html
 
-   <a href="https://insolar.io/platform" target="_blank">Plaform features</a>
+   <a href="https://insolar.io/platform" target="_blank">Plaform features <i class="fa fa-external-link"></i></a>
