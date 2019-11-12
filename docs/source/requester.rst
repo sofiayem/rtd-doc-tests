@@ -8,8 +8,6 @@ Tutorial: Building an API Requester
 
 This tutorial walks you through the process of creating a requester to Insolar API. You will learn how to **form and sign requests** that create a member capable of transferring funds to other members.
 
-To start building the requester, first, familiarize yourself with definitions Insolar uses (member, reference, account, etc.) and the Platform API request types (information and contract).
-
 .. _what_you_will_build:
 
 What You Will Build
@@ -40,7 +38,7 @@ What You Will Need
   * or Java.
 
 * Insolar API specification as a reference.
-* Local Insolar deployment or testing environment provided by Insolar.
+* :ref:`Local Insolar deployment <setting_up_devnet>` or testing environment provided by Insolar.
 
 .. _how_to_complete:
 
