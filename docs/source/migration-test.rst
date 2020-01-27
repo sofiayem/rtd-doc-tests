@@ -3,11 +3,11 @@
 Testing Token Migration
 =======================
 
-This test scenario walks you though the process of acquiring test INS tokens and swapping them to test XNS coins.
+This test scenario walks you through the process of acquiring test INS tokens and swapping them to test XNS coins.
 
 During the testing period of the Insolar MainNet, all operations will be performed with test XNS coins (native for MainNet).
 
-.. warning:: Do not send INS tokens from the real Ethereum network to Insolar MainNet during the testing period.
+.. warning:: Do not send real INS tokens from the main Ethereum network to Insolar MainNet during the testing period.
 
 .. _needs_for_migration_test:
 

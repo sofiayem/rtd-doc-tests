@@ -1,6 +1,9 @@
 .. Insolar documentation master file, created by
    sphinx-quickstart on Tue May 14 19:35:14 2019.
 
+.. raw:: html
+   :file: landing-page.html
+
 Insolar Documentation
 =====================
 
@@ -12,39 +15,78 @@ Insolar’s vision is to facilitate seamless low friction interactions between c
 
 .. _quick_start:
 
-Quick Start
------------
+Start With a Guide
+------------------
 
-To start the deep dive into Insolar architecture, take a look at its :ref:`basics <basics>`.
+.. raw:: html
 
-To integrate with Insolar, go through :ref:`step-by-step instructions <integration>`.
+   <div class="reduced-width">
 
-To test token migration using test tokens, go through the :ref:`test scenario <migration_test>`.
+.. rst-class:: column column2
 
-To build a requester to Insolar API, complete the :ref:`tutorial <building_requester>`.
+:ref:`Learn the basics <basics>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. _toc:
+Understand Insolar.
 
-Table of Contents
-=================
+.. rst-class:: column column2
+
+:ref:`Explore the architecture <architecture>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Take a deep dive.
+
+.. rst-class:: column column2
+
+:ref:`Set up Insolar network locally <integration>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Go through step-by-step instructions.
+
+.. rst-class:: column column2
+
+:ref:`Test token migration <migration_test>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Go through step-by-step instructions.
+
+.. rst-class:: row
+
+.. rst-class:: reg-text
+
+Explore the API
+---------------
+
+.. raw:: html
+
+   <div class="reduced-width">
+
+.. rst-class:: column column2
+
+`MainNet API <https://insolar.io>`_
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+API for creating members and transactions on the network.
+
+.. rst-class:: column column2
+
+`Observer API <https://insolar.io>`_
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+API for pulling information from the network in a read-only fashion.
 
 .. toctree::
-   :maxdepth: 2
+   :hidden:
    :caption: Overview
 
    basics
    architecture
    glossary
- 
+
 .. toctree::
-   :maxdepth: 2
+   :hidden:
    :caption: Integration
 
    migration-test
    integration
-
-.. toctree::
-   :maxdepth: 2
-   :caption: API Cookbook
-
    requester

@@ -38,7 +38,7 @@ What You Will Need
   * or Java.
 
 * Insolar API specification as a reference.
-* :ref:`Local Insolar deployment <setting_up_devnet>` or testing environment provided by Insolar.
+* :ref:`Local Insolar deployment <deploying_devnet>` or testing environment provided by Insolar.
 
 .. _how_to_complete:
 
@@ -170,7 +170,7 @@ To build the requester, install, import, and set up the following:
 
       .. _set_url:
 
-   #. Set the API endpoint URL for the testing environment, either the public one provided by Insolar or :ref:`locally deployed <setting_up_devnet>`.
+   #. Set the API endpoint URL for the testing environment, either the public one provided by Insolar or :ref:`locally deployed <deploying_devnet>`.
    #. Create and initialize an HTTP client for connection re-use.
    #. Create a variable for the JSON RPC 2.0 request identifier. The identifier is to be incremented for every request and each corresponding response will contain it.
 
