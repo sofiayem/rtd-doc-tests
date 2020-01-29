@@ -9,9 +9,9 @@ Insolar Documentation
 
 Welcome to Insolar documentation.
 
-Insolar Platform is the most secure, scalable, and comprehensive business-ready blockchain toolkit in the world. Insolar’s goal is to give businesses access to features and services that enable them to launch new decentralized applications quickly and easily. Whether a minimum viable product or full-scale production software, Insolar builds and integrates applications for your enterprise's existing systems.
+The current version of the documentation contains a brief architecture overview and INS-to-XNS swapping instructions.
 
-Insolar’s vision is to facilitate seamless low friction interactions between companies by distributing trust, thus accelerating and opening up new opportunities for innovation and value creation.
+Once Insolar implements more functionality, the documentation will include the corresponding information.
 
 .. _quick_start:
 
@@ -43,13 +43,6 @@ Take a deep dive.
 
 Go through step-by-step instructions.
 
-.. rst-class:: column column2
-
-:ref:`Test token migration <migration_test>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Go through step-by-step instructions.
-
 .. rst-class:: row
 
 .. rst-class:: reg-text
@@ -75,6 +68,31 @@ API for creating members and transactions on the network.
 
 API for pulling information from the network in a read-only fashion.
 
+.. rst-class:: row
+
+.. rst-class:: reg-text
+
+Swap INS to XNS
+---------------
+
+.. raw:: html
+
+   <div class="reduced-width">
+
+.. rst-class:: column column2
+
+:ref:`Test the swap <migration_test>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In the TestNet.
+
+.. rst-class:: column column2
+
+:ref:`Perform the swap <swap>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In the MainNet.
+
 .. toctree::
    :hidden:
    :caption: Overview
@@ -87,6 +105,12 @@ API for pulling information from the network in a read-only fashion.
    :hidden:
    :caption: Integration
 
-   migration-test
    integration
    requester
+
+.. toctree::
+   :hidden:
+   :caption: User Guides
+
+   migration-test
+   swap
