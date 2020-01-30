@@ -5,7 +5,10 @@ Swapping INS for XNS
 
 To swap your INS tokens to XNS coins and simultaneously migrate them from the Ethereum network to Insolar MainNet, go through the following steps:
 
-#. Open the `Insolar Wallet <wallet.insolar.io>`_ website and make sure to select :guilabel:`MAINNET` from the drop-down list.
+#. Open the `Insolar Wallet <https://wallet.insolar.io>`_ website and make sure to select :guilabel:`MAINNET` from the drop-down list.
+
+   .. image:: https://github.com/insolar/doc-pics/raw/master/mig-test/select-mainnet.png
+      :width: 600px
 
 #. Click :guilabel:`CREATE A NEW WALLET`:
 
@@ -81,19 +84,46 @@ To swap your INS tokens to XNS coins and simultaneously migrate them from the Et
 
 #. In the Insolar Wallet, open the :guilabel:`SWAP` tab and copy your migration address.
 
+   .. image:: https://github.com/insolar/doc-pics/raw/master/mig-test/wlt-open-swap-tab.png
+      :width: 600px
+
    This is a special address in the Ethereum network. Insolar monitors INS tokens sent to it and automatically migrates and swaps them to XNS coins in the Insolar network.
 
-#. Open your ERC-20 Ethereum wallet where you hold your XNS, for example, MetaMask.
+#. Open your ERC-20 Ethereum wallet where you hold your XNS, for example, MetaMask:
 
-#. Open the transfer section, paste the migration address to the recipient field, select the transaction fee (in ETH), and send the INS tokens.
+   .. image:: https://github.com/insolar/doc-pics/raw/master/mig-test/open-eth-wallet.png
+      :width: 300px
 
-#. Wait for the transaction to go through in the Ethereum network. Optionally, check the transaction status at `Etherscan <etherscan.io>`_ — enter the transaction ID.
+   Make sure to select :guilabel:`Main Ethereum Network` and that you have some ETH for the transaction fee.
+
+#. In the Ethereum wallet, select INS tokens and click :guilabel:`SEND`:
+
+   .. image:: https://github.com/insolar/doc-pics/raw/master/mig-test/eth-wlt-send-ins.png?get
+      :width: 300px
+
+#. Paste the migration address to the :guilabel:`Add Recipient` field, enter the INS amount, select the transaction fee (in ETH), and click :guilabel:`NEXT`:
+
+   .. image:: https://github.com/insolar/doc-pics/raw/master/mig-test/ins-transfer-details.png
+      :width: 300px
+
+#. Confirm the transaction details:
+
+   .. image:: https://github.com/insolar/doc-pics/raw/master/mig-test/confirm-eth-tx.png
+      :width: 300px
+
+#. Wait for the transaction to go through in the Ethereum network. Optionally, check the transaction status at `Etherscan <https://etherscan.io>`_ — click the arrow button to view the transaction:
+
+   .. image:: https://github.com/insolar/doc-pics/raw/master/mig-test/view-on-ethscan.png
+      :width: 300px
 
    It usually takes 20 processed blocks to confirm the transaction.
 
+   .. image:: https://github.com/insolar/doc-pics/raw/master/mig-test/eth-scan-tx.png
+      :width: 600px
+
 #. Go back to the :guilabel:`SWAP` tab in your Insolar Wallet.
 
-   Congratulations! You swapped your INS tokens to XNS coins and they are now stored in your Insolar Wallet.
+   .. image:: https://github.com/insolar/doc-pics/raw/master/mig-test/swap-and-release.png
+      :width: 600px
 
-
-
+Congratulations! You swapped your INS tokens to XNS coins and they are now stored in your Insolar Wallet.
