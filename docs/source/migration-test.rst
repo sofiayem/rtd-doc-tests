@@ -209,12 +209,17 @@ Migrating Test INS Tokens and Swapping Them to Test XNS Coins
 
 To migrate the test INS tokens and swap them to XNS coins:
 
-#. Create your Insolar Wallet. On the Insolar Wallet main page, click :guilabel:`CREATE A NEW WALLET`:
+#. Open the `Insolar Wallet <https://wallet.insolar.io>`_ website and make sure to select :guilabel:`TESTNET` from the drop-down list.
 
-   .. image:: https://github.com/insolar/doc-pics/raw/master/mig-test/create-ins-wallet.png
+   .. image:: https://github.com/insolar/doc-pics/raw/master/mig-test/select-testnet.png
       :width: 600px
 
-   The **Wallet creation tutorial** will open. Read through it attentively.
+#. Click :guilabel:`CREATE A NEW WALLET`:
+
+   .. image:: https://github.com/insolar/doc-pics/raw/master/mig-test/create-test-ins-wlt.png
+      :width: 600px
+
+   This opens a **Wallet creation tutorial**. Read through it attentively.
 
    Upon creation, the Wallet takes care of security for you:
 
