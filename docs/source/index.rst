@@ -9,9 +9,7 @@ Insolar Documentation
 
 Welcome to Insolar documentation.
 
-The current version of the documentation contains a brief architecture overview and INS-to-XNS swapping instructions.
-
-Once Insolar implements more functionality, the documentation will include the corresponding information.
+Explore Insolar technologies and MainNet API reference or learn how to swap INS for XNS.
 
 .. _quick_start:
 
