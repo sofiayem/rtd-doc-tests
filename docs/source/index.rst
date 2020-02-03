@@ -9,7 +9,7 @@ Insolar Documentation
 
 Welcome to Insolar documentation.
 
-Explore Insolar technologies and MainNet API reference or learn how to swap INS for XNS.
+Explore Insolar technologies and MainNet API reference, run Insolar locally, or learn how to swap INS to XNS.
 
 .. _quick_start:
 
@@ -54,15 +54,15 @@ Explore the API
 
 .. rst-class:: column column2
 
-`MainNet API <https://insolar.io>`_
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+`MainNet API <https://apidocs.insolar.io/platform/latest>`_
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 API for creating members and transactions on the network.
 
 .. rst-class:: column column2
 
-`Observer API <https://insolar.io>`_
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+`Observer API <https://apidocs.insolar.io/observer/latest>`_
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 API for pulling information from the network in a read-only fashion.
 
@@ -101,10 +101,9 @@ In the MainNet.
 
 .. toctree::
    :hidden:
-   :caption: Integration
+   :caption: Setup
 
    integration
-   requester
 
 .. toctree::
    :hidden:
