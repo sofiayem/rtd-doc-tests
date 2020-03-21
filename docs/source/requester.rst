@@ -1,10 +1,8 @@
 .. _building_requester:
 
-===================================
-Tutorial: Building an API Requester
-===================================
-
-.. TODO: Put the relevant links to API specification everywhere necessary.
+===================
+Build API Requester
+===================
 
 This tutorial walks you through the process of creating a requester to Insolar API. You will learn how to **form and sign requests** that create a member capable of transferring funds to other members.
 

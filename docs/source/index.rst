@@ -9,12 +9,12 @@ Insolar Documentation
 
 Welcome to Insolar documentation.
 
-Explore Insolar technologies and MainNet API reference, run Insolar locally, or learn how to swap INS to XNS.
-
 .. _quick_start:
 
-Start With a Guide
-------------------
+Developers: Start With a Guide
+------------------------------
+
+If you are a developer, explore Insolar technologies and run Insolar locally for testing purposes.
 
 .. raw:: html
 
@@ -22,10 +22,10 @@ Start With a Guide
 
 .. rst-class:: column column2
 
-:ref:`Learn the basics <basics>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:ref:`Understand Insolar <basics>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Understand Insolar.
+Learn the basics.
 
 .. rst-class:: column column2
 
@@ -45,8 +45,10 @@ Go through step-by-step instructions.
 
 .. rst-class:: reg-text
 
-Explore the API
----------------
+Exchange and Wallet Developers: Integrate With Insolar
+-------------------------------------------------------
+
+If you are an exchange or you wish to implement your own wallet for Insolar MainNet, explore the API references and build an API requester.
 
 .. raw:: html
 
@@ -54,24 +56,40 @@ Explore the API
 
 .. rst-class:: column column2
 
+:ref:`Explore the use cases <exchanges>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Learn what APIs to invoke and in what sequences.
+
+.. rst-class:: column column2
+
+:ref:`Build an API requester <building_requester>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Learn how to form and sign requests to MainNet API.
+
+.. rst-class:: column column2
+
 `MainNet API <https://apidocs.insolar.io/platform/latest>`_
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 API for creating members and transactions on the network.
 
 .. rst-class:: column column2
 
-`Observer API <https://apidocs.insolar.io/observer/latest>`_
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+`MainNet read-only API <https://apidocs.insolar.io/observer/latest>`_
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-API for pulling information from the network in a read-only fashion.
+Read-only API provided by an Observer service that pulls information from the network.
 
 .. rst-class:: row
 
 .. rst-class:: reg-text
 
-Swap INS to XNS
----------------
+Users: Swap INS to XNS
+----------------------
+
+If you are a user, learn how to swap the token for the coin.
 
 .. raw:: html
 
@@ -93,21 +111,23 @@ In the MainNet.
 
 .. toctree::
    :hidden:
-   :caption: Overview
+   :caption: Developers
 
    basics
    architecture
+   integration
    glossary
 
 .. toctree::
    :hidden:
-   :caption: Setup
+   :caption: Exchange and Wallet Developers
 
-   integration
+   exchanges
+   requester
 
 .. toctree::
    :hidden:
-   :caption: User Guides
+   :caption: Users
 
    migration-test
    swap
